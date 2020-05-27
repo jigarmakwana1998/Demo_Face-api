@@ -29,25 +29,36 @@
       left: 0;
     }
   </style>
+  
 </head>
 
 <body>
   <div class="column">
-  <div class="row">
-    <div class="column" style="background-color:#aaa;">
-      <video width="640" height="480" id="inputVideo" autoplay muted></video>
-      <canvas id="overlay" />
+    <div class="row">
+      <div class="column" style="background-color:#aaa;">
+        <video width="640" height="480" id="inputVideo" autoplay muted></video>
+        <canvas id="overlay" />
+      </div>
+      <div class="column" style="background-color:#bbb;">
+        <canvas id="canvas" style="position: absolute; left: 200px; top: 300px;"></canvas>
+      </div>
     </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas" style="position: absolute; left: 200px; top: 300px;"></canvas>
+    <div>
+      <form id="frm1">
+        <label for="kernelNumber">Choose a kernel:</label>
+        <select id="kernelNumber"></select>
+      </form>
     </div>
   </div>
-  <div>
-    <form id="frm1">
-      <input type="number" name="lname" max="63" min="1" value="1"><br>
-    </form>
-  </div>
-</div>
+  <script>
+    var start = 0;
+    var end = 63;
+    var options = "";
+    for (var y = start; y <= end; y++) {
+      options += "<option value =" + y + ">" + y + "</option>";
+    }
+    document.getElementById("kernelNumber").innerHTML = options;
+  </script>
 </body>
 
 </html>
