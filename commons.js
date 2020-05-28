@@ -34,6 +34,7 @@ video.addEventListener('play', () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.SsdMobilenetv1Options());
 
     const kernelNumber = document.getElementById("frm1").elements[0].value;
+    console.log(kernelNumber);
     grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(kernelNumber);
     idata.data.set(grayScale);
     ctx.putImageData(idata, 0, 0);
