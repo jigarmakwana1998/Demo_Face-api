@@ -6,12 +6,9 @@ Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri('models')
 ]).then(startVideo)
 
-function startVideo() {
-  navigator.getUserMedia(
-    { video: true },
-    stream => video.srcObject = stream,
-    err => console.error(err)
-  )
+async function startVideo() {
+  const stream = await navigator.mediaDevices.getUserMedia({ video: true})
+  video.srcObject = stream
 }
 
 var width = 256, height = 256;
@@ -34,7 +31,6 @@ video.addEventListener('play', () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.SsdMobilenetv1Options());
 
     const kernelNumber = document.getElementById("frm1").elements[0].value;
-    console.log(kernelNumber);
     grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(kernelNumber);
     idata.data.set(grayScale);
     ctx.putImageData(idata, 0, 0);
