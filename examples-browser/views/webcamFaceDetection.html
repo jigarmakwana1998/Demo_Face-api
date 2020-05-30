@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script defer src="FileSaver.js"></script>
+  <script defer src="face-api.js"></script>
+  <script defer src="js/faceDetectionControls.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+
+<body>
+  <div id="navbar"></div>
+  <div class="center-content page-container">
+
+    <div class="progress" id="loader">
+      <div class="indeterminate"></div>
+    </div>
+    <div style="position: relative" class="margin">
+      <video width="640" height="480" onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted
+        playsinline></video>
+      <canvas id="overlay" />
+    </div>
+    <div style="position: relative" class="margin">
+      <canvas id="canvas" />
+    </div>
+    <div>
+      <div class="row side-by-side">
+        <div class="row">
+          <label for="kernelNumber">Choose a kernel:</label>
+          <input disabled value="0" id="kernelNumber" type="text" class="bold">
+        </div>
+        <button class="waves-effect waves-light btn" onclick="onDecreaseMinConfidence()">
+          <i class="material-icons left">-</i>
+        </button>
+        <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
+          <i class="material-icons left">+</i>
+        </button>
+        <br>
+        <br>
+        <button id="create" onclick="generate()">Create file</button>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const width = 256, height = 256;
+  var canvas1 = document.getElementById('canvas'), ctx = canvas1.getContext('2d');
+  canvas1.width = width;
+  canvas1.height = height;
+  var idata = ctx.createImageData(width, height);
+
+  async function generate() {
+    var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayer());
+    data.then(vals => {
+      var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "output.txt");
+    });
+  }
+
+  async function onPlay() {
+    const videoEl = $('#inputVideo').get(0)
+
+    if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
+      return setTimeout(() => onPlay())
+
+    const result = await faceapi.detectAllFaces(videoEl, new faceapi.SsdMobilenetv1Options())
+    const kernelNumber = document.getElementById("kernelNumber").value;
+    const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(kernelNumber);
+    idata.data.set(grayScale);
+    ctx.putImageData(idata, 0, 0);
+
+    if (result) {
+      const canvas = $('#overlay').get(0)
+      const dims = faceapi.matchDimensions(canvas, videoEl, true)
+      faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims))
+    }
+
+    setTimeout(() => onPlay())
+  }
+
+  async function run() {
+    await loadFaceDetector()
+    const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
+    const videoEl = $('#inputVideo').get(0)
+    videoEl.srcObject = stream
+  }
+
+  function updateResults() { }
+
+  $(document).ready(function () {
+    run()
+  })
+</script>
+</body>
+
+</html>
