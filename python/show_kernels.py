@@ -26,4 +26,5 @@ def show_kernel(r=-1, g=-1, b=-1):
   plt.title('Kernels %s %s %s' % (r,g,b))
   plt.pause(1)
 
-show_kernel(16,18,19)
+for i in range(64):
+  show_kernel(i,i,i)
