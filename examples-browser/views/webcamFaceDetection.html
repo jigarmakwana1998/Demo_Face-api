@@ -72,7 +72,9 @@
 
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.SsdMobilenetv1Options())
     const kernelNumber = document.getElementById("kernelNumber").value;
-    const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(kernelNumber);
+    const layer = await faceapi.nets.ssdMobilenetv1.getConvLayer();
+    layer_kernel = layer.slice(kernelNumber, kernelNumber + 1)[0];
+    const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(layer_kernel);
     idata.data.set(grayScale);
     ctx.putImageData(idata, 0, 0);
 

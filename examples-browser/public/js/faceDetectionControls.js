@@ -8,7 +8,7 @@ function getFaceDetectorOptions() {
 }
 
 function auto_update(){
-  update = setInterval(onIncreaseMinConfidence,200)
+  update = setInterval(onIncreaseMinConfidence,400)
   if (flag > 0){
     flag = 0
     kernelNumber = 0
