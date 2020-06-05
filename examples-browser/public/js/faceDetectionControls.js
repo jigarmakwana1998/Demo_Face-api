@@ -7,7 +7,7 @@ function getFaceDetectorOptions() {
   return  new faceapi.SsdMobilenetv1Options({ minConfidence })
 }
 
-function auto_update(){
+async function auto_update(){
   update = setInterval(onIncreaseMinConfidence,400)
   if (flag > 0){
     flag = 0
