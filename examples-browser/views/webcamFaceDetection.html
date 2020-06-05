@@ -38,6 +38,9 @@
         <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
           <i class="material-icons left">+</i>
         </button>
+        <button class="waves-effect waves-light btn" onclick="auto_update()">
+          <i class="material-icons left">Auto Update</i>
+        </button>
         <br>
         <br>
         <button id="create" onclick="generate()">Create file</button>
@@ -55,7 +58,7 @@
   var idata = ctx.createImageData(width, height);
 
   async function generate() {
-    var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayer());
+    var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayerString());
     data.then(vals => {
       var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
       saveAs(blob, "output.txt");
@@ -64,7 +67,6 @@
 
   async function onPlay() {
     const videoEl = $('#inputVideo').get(0)
-
     if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
       return setTimeout(() => onPlay())
 

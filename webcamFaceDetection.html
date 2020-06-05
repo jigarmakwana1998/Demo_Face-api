@@ -39,6 +39,9 @@
       </div>
       <div class="column" style="background-color:#bbb;">
         <canvas id="canvas" style="position: absolute; left: 200px; top: 300px;"></canvas>
+        <p id="kernel1" style = "position:absolute; top:600px; left: 250px;">Choose a kernel:</p>
+        <p id="kernel" style = "position:absolute; top:600px; left: 400px;"></p>
+
       </div>
     </div>
     <div>
@@ -60,7 +63,7 @@
 
     async function generate() {
       var data_final;
-      var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayer());
+      var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayerString());
       data.then(vals => {
         var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
         saveAs(blob, "output.txt");
