@@ -8,17 +8,17 @@
   <script defer src="commons.js"></script>
   <style>
     body {
-      margin: 50px;
-      padding: 0;
-      padding-top: 150px;
+      /* margin-right: auto; */
+      /* align-left: 400px; */
+      /* margin-left: 200px; */
+      /* margin-top: 150px; */
+      margin-left: auto;
+      margin-right: auto;
       width: 100%;
       height: 100%;
       display: flex;
-    }
-
-    .column {
-      float: left;
-      width: 50%;
+      justify-content: center;
+      align-items: center;
     }
 
     canvas {
@@ -31,45 +31,43 @@
 </head>
 
 <body>
-  <div class="column">
-    <div class="row">
-      <div class="column" style="background-color:#aaa;">
-      <video width="640" height="480" id="inputVideo" autoplay muted playsinline></video>
-        <canvas id="overlay" />
-      </div>
-      <div class="column" style="background-color:#bbb;">
-        <canvas id="canvas" style="position: absolute; left: 200px; top: 300px;"></canvas>
-        <p id="kernel1" style = "position:absolute; top:600px; left: 250px;">Choose a kernel:</p>
-        <p id="kernel" style = "position:absolute; top:600px; left: 400px;"></p>
-
-      </div>
+  <div style="position: absolute;">
+    <video width="640" height="480" id="inputVideo" autoplay muted playsinline></video>
+    <canvas id="overlay" />
+  </div>
+  <div class="row">
+    <div class="column" style="background-color:#bbb;">
+      <canvas id="canvas2" style="position: absolute; left: 400px; top: 800px;"></canvas>
+      <p id="kernel2" style="position:absolute; top:750px; left: 400px;">              kernel: 2</p>
+      <canvas id="canvas26" style="position: absolute; left: 400px; top: 1175px;"></canvas>
+      <p id="kernel26" style="position:absolute; top:1125px; left: 400px;">              kernel: 26</p>
     </div>
-    <div>
-      <form id="frm1">
-        <label for="kernelNumber">Choose a kernel:</label>
-        <select id="kernelNumber"></select>
-      </form>
-      <button id="create" onclick="generate()">Create file</button>
+    <div class="column" style="background-color:#bbb;">
+      <canvas id="canvas42" style="position: absolute; left: 775px; top: 800px;"></canvas>
+      <p id="kernel42" style="position:absolute; top:750px; left: 775px;">              kernel: 42</p>
+      <canvas id="canvas55" style="position: absolute; left: 775px; top: 1175px;"></canvas>
+      <p id="kernel55" style="position:absolute; top:1125px; left: 775px;">              kernel: 55</p>
+    </div>
+    <div class="column" style="background-color:#bbb;">
+      <canvas id="canvas60" style="position: absolute; left: 1150px; top: 800px;"></canvas>
+      <p id="kernel60" style="position:absolute; top:750px; left: 1150px;">              kernel: 60</p>
+      <canvas id="canvasX" style="position: absolute; left: 1150px; top: 1175px;"></canvas>
+      <p id="kernelX" style="position:absolute; top:1125px; left: 1150px;"></p>
     </div>
   </div>
-  <script>
-    var start = 0;
-    var end = 63;
-    var options = "";
-    for (var y = start; y <= end; y++) {
-      options += "<option value =" + y + ">" + y + "</option>";
-    }
-    document.getElementById("kernelNumber").innerHTML = options;
-
-    async function generate() {
-      var data_final;
-      var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayerString());
-      data.then(vals => {
-        var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, "output.txt");
-      });
-    }
-  </script>
+  <div style="margin-left: auto; margin-right: auto; padding-top: 700px;">
+    <button id="create" onclick="generate()">Create file</button>
+  </div>
 </body>
+<script>
+  async function generate() {
+    var data_final;
+    var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayerString());
+    data.then(vals => {
+      var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "output.txt");
+    });
+  }
+</script>
 
 </html>

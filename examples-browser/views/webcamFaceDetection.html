@@ -23,12 +23,41 @@
         playsinline></video>
       <canvas id="overlay" />
     </div>
-    <div style="position: relative" class="margin">
-      <canvas id="canvas" />
+    <div class="row side-by-side">
+      <div style="position: relative" class="margin">
+        <div class="column">
+          <canvas id="canvas2" />
+          <p>kernel: 2</p>
+        </div>
+        <div class="column">
+          <canvas id="canvas42" />
+          <p>kernel: 42</p>
+        </div>
+        <div class="column">
+          <canvas id="canvas60" />
+          <p>kernel: 60</p>
+        </div>
+      </div>
+    </div>
+    <div class="row side-by-side">
+      <div style="position: relative" class="margin">
+        <div class="column">
+          <canvas id="canvas26" />
+          <p>kernel: 26</p>
+        </div>
+        <div class="column">
+          <canvas id="canvas55" />
+          <p>kernel: 55</p>
+        </div>
+        <div class="column">
+          <canvas id="canvasx" />
+          <p>kernel: x</p>
+        </div>
+      </div>
     </div>
     <div>
       <div class="row side-by-side">
-        <div class="row">
+        <!-- <div class="row">
           <label for="kernelNumber">Choose a kernel:</label>
           <input disabled value="0" id="kernelNumber" type="text" class="bold">
         </div>
@@ -38,13 +67,9 @@
         <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
           <i class="material-icons left">+</i>
         </button>
-        <button class="waves-effect waves-light btn" onclick="auto_update()">
-          <i class="material-icons left">Auto Update</i>
-        </button>
         <br>
-        <br>
+        <br> -->
         <button id="create" onclick="generate()">Create file</button>
-
       </div>
     </div>
   </div>
@@ -52,10 +77,22 @@
 
 <script>
   const width = 256, height = 256;
-  var canvas1 = document.getElementById('canvas'), ctx = canvas1.getContext('2d');
-  canvas1.width = width;
-  canvas1.height = height;
-  var idata = ctx.createImageData(width, height);
+  const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d'), idata2 = ctx2.createImageData(width, height);
+  canvas2.width = width, canvas2.height = height;
+
+  const canvas26 = document.getElementById('canvas26'), ctx26 = canvas26.getContext('2d'), idata26 = ctx26.createImageData(width, height);
+  canvas26.width = width, canvas26.height = height;
+
+  const canvas42 = document.getElementById('canvas42'), ctx42 = canvas42.getContext('2d'), idata42 = ctx42.createImageData(width, height);
+  canvas42.width = width, canvas42.height = height;
+
+  const canvas55 = document.getElementById('canvas55'), ctx55 = canvas55.getContext('2d'), idata55 = ctx55.createImageData(width, height);
+  canvas55.width = width, canvas55.height = height;
+
+  const canvas60 = document.getElementById('canvas60'), ctx60 = canvas60.getContext('2d'), idata60 = ctx60.createImageData(width, height);
+  canvas60.width = width, canvas60.height = height;
+
+
 
   async function generate() {
     var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayerString());
@@ -65,27 +102,24 @@
     });
   }
 
-  function displayGrayScale() {
-    return new Promise(function (resolve, reject) {
-      setInterval(async function () {
-        const kernelNumber = document.getElementById("kernelNumber").value;
-        const layer = await faceapi.nets.ssdMobilenetv1.getConvLayer();
-        layer_kernel = layer.slice(kernelNumber, kernelNumber + 1)[0];
-        const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(layer_kernel);
-        idata.data.set(grayScale);
-        ctx.putImageData(idata, 0, 0);
-        onIncreaseMinConfidence();
-        resolve();
-      }, 1000);
-    })
-  }
   async function onPlay() {
     const videoEl = $('#inputVideo').get(0)
     if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
       return setTimeout(() => onPlay())
 
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.SsdMobilenetv1Options())
-    await displayGrayScale();
+    const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale();
+    idata2.data.set(grayScale[0]);
+    ctx2.putImageData(idata2, 0, 0);
+    idata26.data.set(grayScale[1]);
+    ctx26.putImageData(idata26, 0, 0);
+    idata42.data.set(grayScale[2]);
+    ctx42.putImageData(idata42, 0, 0);
+    idata55.data.set(grayScale[3]);
+    ctx55.putImageData(idata55, 0, 0);
+    idata60.data.set(grayScale[4]);
+    ctx60.putImageData(idata60, 0, 0);
+
 
     if (result) {
       const canvas = $('#overlay').get(0)
