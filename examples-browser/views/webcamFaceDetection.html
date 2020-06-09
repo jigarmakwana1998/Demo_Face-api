@@ -65,18 +65,27 @@
     });
   }
 
+  function displayGrayScale() {
+    return new Promise(function (resolve, reject) {
+      setInterval(async function () {
+        const kernelNumber = document.getElementById("kernelNumber").value;
+        const layer = await faceapi.nets.ssdMobilenetv1.getConvLayer();
+        layer_kernel = layer.slice(kernelNumber, kernelNumber + 1)[0];
+        const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(layer_kernel);
+        idata.data.set(grayScale);
+        ctx.putImageData(idata, 0, 0);
+        onIncreaseMinConfidence();
+        resolve();
+      }, 1000);
+    })
+  }
   async function onPlay() {
     const videoEl = $('#inputVideo').get(0)
     if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
       return setTimeout(() => onPlay())
 
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.SsdMobilenetv1Options())
-    const kernelNumber = document.getElementById("kernelNumber").value;
-    const layer = await faceapi.nets.ssdMobilenetv1.getConvLayer();
-    layer_kernel = layer.slice(kernelNumber, kernelNumber + 1)[0];
-    const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale(layer_kernel);
-    idata.data.set(grayScale);
-    ctx.putImageData(idata, 0, 0);
+    await displayGrayScale();
 
     if (result) {
       const canvas = $('#overlay').get(0)
