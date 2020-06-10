@@ -2,10 +2,10 @@
 <html>
 
 <head>
-  <script defer src="FileSaver.js"></script>
-  <script defer src="face-api.js"></script>
-  <script defer src="js/faceDetectionControls.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <script defer src="../dist/FileSaver.js"></script>
+  <script defer src="../dist/face-api.js"></script>
+  <script defer src="../public/js/faceDetectionControls.js"></script>
+  <link rel="stylesheet" href="/public/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -23,54 +23,47 @@
         playsinline></video>
       <canvas id="overlay" />
     </div>
-    <div class="row side-by-side">
-      <div style="position: relative" class="margin">
-        <div class="column">
-          <canvas id="canvas2" />
-          <p>kernel: 2</p>
-        </div>
-        <div class="column">
-          <canvas id="canvas42" />
-          <p>kernel: 42</p>
-        </div>
-        <div class="column">
-          <canvas id="canvas60" />
-          <p>kernel: 60</p>
-        </div>
+    <div class="row side-by-side margin">
+      <div class="column">
+        <label for="canvas2">         kernel: 2</label>
+        <canvas id="canvas2" />
+      </div>
+      <div class="column">
+        <label for="canvas42">         kernel: 42</label>
+        <canvas id="canvas42" />
+      </div>
+      <div class="column">
+        <label for="canvas60">         kernel: 60</label>
+        <canvas id="canvas60" />
+      </div>
+    </div>
+    <div class="row side-by-side margin" style="margin-left: 10px;">
+      <div class="column">
+        <label for="canvas26">         kernel: 26</label>
+        <canvas id="canvas26" />
+      </div>
+      <div class="column">
+        <label for="canvas55">         kernel: 55</label>
+        <canvas id="canvas55" />
+      </div>
+      <div class="column">
+        <!-- <label for="canvasx">         kernel: x</label> -->
+        <canvas id="canvasx" />
       </div>
     </div>
     <div class="row side-by-side">
-      <div style="position: relative" class="margin">
-        <div class="column">
-          <canvas id="canvas26" />
-          <p>kernel: 26</p>
-        </div>
-        <div class="column">
-          <canvas id="canvas55" />
-          <p>kernel: 55</p>
-        </div>
-        <div class="column">
-          <canvas id="canvasx" />
-          <p>kernel: x</p>
-        </div>
+      <!-- <div class="row">
+        <input disabled value="0" id="kernelNumber" type="text" class="bold">
       </div>
-    </div>
-    <div>
-      <div class="row side-by-side">
-        <!-- <div class="row">
-          <label for="kernelNumber">Choose a kernel:</label>
-          <input disabled value="0" id="kernelNumber" type="text" class="bold">
-        </div>
-        <button class="waves-effect waves-light btn" onclick="onDecreaseMinConfidence()">
-          <i class="material-icons left">-</i>
-        </button>
-        <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
-          <i class="material-icons left">+</i>
-        </button>
-        <br>
-        <br> -->
-        <button id="create" onclick="generate()">Create file</button>
-      </div>
+      <button class="waves-effect waves-light btn" onclick="onDecreaseMinConfidence()">
+        <i class="material-icons left">-</i>
+      </button>
+      <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
+        <i class="material-icons left">+</i>
+      </button>
+      <br>
+      <br> -->
+      <button id="create" onclick="generate()">Create file</button>
     </div>
   </div>
 </body>
