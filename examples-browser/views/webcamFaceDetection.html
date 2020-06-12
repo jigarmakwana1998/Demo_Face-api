@@ -5,7 +5,7 @@
   <script defer src="../dist/FileSaver.js"></script>
   <script defer src="../dist/face-api.js"></script>
   <script defer src="../public/js/faceDetectionControls.js"></script>
-  <link rel="stylesheet" href="/public/styles.css">
+  <link rel="stylesheet" href="../public/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -23,21 +23,41 @@
         playsinline></video>
       <canvas id="overlay" />
     </div>
+    <h4>Convolutional Layer : 1</h4>
     <div class="row side-by-side margin">
       <div class="column">
-        <label for="canvas2">         kernel: 2</label>
-        <canvas id="canvas2" />
+        <label for="canvas2"> kernel: 2</label>
+        <canvas id="canvas2" width="256" height="256" />
       </div>
       <div class="column">
-        <label for="canvas42">         kernel: 42</label>
-        <canvas id="canvas42" />
+        <label for="canvas42"> kernel: 42</label>
+        <canvas id="canvas42" width="256" height="256" />
       </div>
       <div class="column">
-        <label for="canvas60">         kernel: 60</label>
-        <canvas id="canvas60" />
+        <label for="canvas60"> kernel: 60</label>
+        <canvas id="canvas60" width="256" height="256" />
       </div>
     </div>
-    <div class="row side-by-side margin" style="margin-left: 10px;">
+    <h4>Convolutional Layer : 11</h4>
+    <div class="row side-by-side margin">
+      <div class="column">
+        <canvas id="canvas85" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel85">kernel: 85</p>
+      </div>
+      <div class="column">
+        <canvas id="canvas90" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel90">kernel: 90</p>
+      </div>
+      <div class="column">
+        <canvas id="canvas333" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel333">kernel: 333</p>
+      </div>
+      <div class="column">
+        <canvas id="canvas463" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel463">kernel: 463</p>
+      </div>
+    </div>
+    <!-- <div class="row side-by-side margin" style="margin-left: 10px;">
       <div class="column">
         <label for="canvas26">         kernel: 26</label>
         <canvas id="canvas26" />
@@ -47,10 +67,10 @@
         <canvas id="canvas55" />
       </div>
       <div class="column">
-        <!-- <label for="canvasx">         kernel: x</label> -->
+        <label for="canvasx">         kernel: x</label>
         <canvas id="canvasx" />
       </div>
-    </div>
+    </div> -->
     <div class="row side-by-side">
       <!-- <div class="row">
         <input disabled value="0" id="kernelNumber" type="text" class="bold">
@@ -70,22 +90,17 @@
 
 <script>
   const width = 256, height = 256;
-  const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d'), idata2 = ctx2.createImageData(width, height);
-  canvas2.width = width, canvas2.height = height;
-
-  const canvas26 = document.getElementById('canvas26'), ctx26 = canvas26.getContext('2d'), idata26 = ctx26.createImageData(width, height);
-  canvas26.width = width, canvas26.height = height;
-
+  const canvas2 = document.getElementById('canvas2'),   ctx2 = canvas2.getContext('2d'),   idata2 = ctx2.createImageData(width, height);
+  // const canvas26 = document.getElementById('canvas26'), ctx26 = canvas26.getContext('2d'), idata26 = ctx26.createImageData(width, height);
   const canvas42 = document.getElementById('canvas42'), ctx42 = canvas42.getContext('2d'), idata42 = ctx42.createImageData(width, height);
-  canvas42.width = width, canvas42.height = height;
-
-  const canvas55 = document.getElementById('canvas55'), ctx55 = canvas55.getContext('2d'), idata55 = ctx55.createImageData(width, height);
-  canvas55.width = width, canvas55.height = height;
-
+  // const canvas55 = document.getElementById('canvas55'), ctx55 = canvas55.getContext('2d'), idata55 = ctx55.createImageData(width, height);
   const canvas60 = document.getElementById('canvas60'), ctx60 = canvas60.getContext('2d'), idata60 = ctx60.createImageData(width, height);
-  canvas60.width = width, canvas60.height = height;
 
-
+  const width2 = 32, height2 = 32;
+  const canvas85 = document.getElementById('canvas85'), ctx85 = canvas85.getContext('2d'), idata85 = ctx85.createImageData(width2, height2);
+  const canvas90 = document.getElementById('canvas90'), ctx90 = canvas90.getContext('2d'), idata90 = ctx90.createImageData(width2, height2);
+  const canvas333 = document.getElementById('canvas333'), ctx333 = canvas333.getContext('2d'), idata333 = ctx333.createImageData(width2, height2);
+  const canvas463 = document.getElementById('canvas463'), ctx463 = canvas463.getContext('2d'), idata463 = ctx463.createImageData(width2, height2);
 
   async function generate() {
     var data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getConvLayerString());
@@ -102,17 +117,27 @@
 
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.SsdMobilenetv1Options())
     const grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale();
+    const grayScale2 = await faceapi.nets.ssdMobilenetv1.getGrayScale_conv11();
+
     idata2.data.set(grayScale[0]);
     ctx2.putImageData(idata2, 0, 0);
-    idata26.data.set(grayScale[1]);
-    ctx26.putImageData(idata26, 0, 0);
+    // idata26.data.set(grayScale[1]);
+    // ctx26.putImageData(idata26, 0, 0);
     idata42.data.set(grayScale[2]);
     ctx42.putImageData(idata42, 0, 0);
-    idata55.data.set(grayScale[3]);
-    ctx55.putImageData(idata55, 0, 0);
+    // idata55.data.set(grayScale[3]);
+    // ctx55.putImageData(idata55, 0, 0);
     idata60.data.set(grayScale[4]);
     ctx60.putImageData(idata60, 0, 0);
 
+    idata85.data.set(grayScale2[0]);
+    ctx85.putImageData(idata85, 0, 0);
+    idata90.data.set(grayScale2[1]);
+    ctx90.putImageData(idata90, 0, 0);
+    idata333.data.set(grayScale2[5]);
+    ctx333.putImageData(idata333, 0, 0);
+    idata463.data.set(grayScale2[6]);
+    ctx463.putImageData(idata463, 0, 0);
 
     if (result) {
       const canvas = $('#overlay').get(0)

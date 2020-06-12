@@ -38,6 +38,9 @@ def show_kernels_25(r=-1):
       im[:,:,1] = kernels[25*r+(i-1),:,:]
       im[:,:,2] = kernels[25*r+(i-1),:,:]
     fig.add_subplot(5, 5, i)
+    fig.subplots_adjust(hspace=0.4)
+    plt.title(25*r+(i-1), fontsize=5)
+    plt.axis('off') 
     # for white plots
     # plt.imshow(1-(im/255))
     # for black plots

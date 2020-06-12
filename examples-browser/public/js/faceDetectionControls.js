@@ -29,7 +29,7 @@ function isFaceDetectionModelLoaded() {
 async function loadFaceDetector() {
   $('#loader').show()
   if (!isFaceDetectionModelLoaded()) {
-    await getCurrentFaceDetectionNet().load('/weights/')
+    await getCurrentFaceDetectionNet().load('../weights')
   }
   $('#loader').hide()
 }
