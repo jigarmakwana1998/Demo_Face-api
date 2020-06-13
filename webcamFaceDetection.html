@@ -15,6 +15,7 @@
       margin-top: 50 px;
       margin-left: auto;
       margin-right: auto;
+      margin-bottom: 50px;
       width: 100%;
       height: 100%;
       display: flex;
@@ -31,7 +32,7 @@
 
 </head>
 
-<body>
+<body style="background-color:#FFFFE0;">
   <div style="position: absolute; margin-top: -25px;">
     <video width="640" height="480" id="inputVideo" autoplay muted playsinline></video>
     <canvas id="overlay" />
@@ -46,7 +47,7 @@
     </div>
     <div class="column" style="background-color:#bbb;">
       <canvas id="canvas42" width="256" height="256" style="position: absolute; left: 800px; top: 650px;"></canvas>
-      <p id="kernel42" style="position:absolute; top:600px; left: 890px;">kernel: 42</p>
+      <p id="kernel42" style="position:absolute; top:600px; left: 890px;">kernel: 54</p>
       <!-- <canvas id="canvas55" style="position: absolute; left: 775px; top: 1175px;"></canvas>
       <p id="kernel55" style="position:absolute; top:1125px; left: 775px;">kernel: 55</p> -->
     </div>
@@ -59,7 +60,7 @@
   </div>
   <h3 style="position:absolute; top:910px; left: 825px;">Convolutional Layer : 11</h3>
   
-  <div class="row">
+  <div class="row" style="margin-bottom: 50px;">
     <div class="column" style="background-color:#bbb;">
       <canvas id="canvas85" width="32" height="32" style="position: absolute; left: 575px; top: 1010px; width: 128px; height: 128px;"></canvas>
       <p id="kernel85" style="position:absolute; top:960px; left: 600px;">kernel: 85</p>
@@ -80,6 +81,7 @@
   <div style="margin-left: auto; margin-right: auto; padding-top: 525px;">
     <button id="create" onclick="generate()">Create file</button>
   </div>
+  <p style="position: absolute; margin-left: auto; margin-right: auto; top: 1150px;">-----------------------------</p>
 </body>
 <script>
   async function generate() {

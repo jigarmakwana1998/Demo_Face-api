@@ -75,10 +75,10 @@ video.addEventListener('play', () => {
     idata90.data.set(grayScale2[1]);
     ctx90.putImageData(idata90, 0, 0);
 
-    idata333.data.set(grayScale2[5]);
+    idata333.data.set(grayScale2[2]);
     ctx333.putImageData(idata333, 0, 0);
 
-    idata463.data.set(grayScale2[6]);
+    idata463.data.set(grayScale2[3]);
     ctx463.putImageData(idata463, 0, 0);
     
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
