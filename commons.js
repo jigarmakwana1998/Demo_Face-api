@@ -16,14 +16,14 @@ async function startVideo() {
 
 const width1 = 256, height1 = 256;
 const width2 = 32, height2 = 32;
-const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d');
-const idata2 = ctx2.createImageData(width1, height1);
+const canvas42 = document.getElementById('canvas42'), ctx42 = canvas42.getContext('2d');
+const idata42 = ctx42.createImageData(width1, height1);
 
 // const canvas26 = document.getElementById('canvas26'), ctx26 = canvas26.getContext('2d');
 // const idata26 = ctx26.createImageData(width1, height1);
 
-const canvas42 = document.getElementById('canvas42'), ctx42 = canvas42.getContext('2d');
-const idata42 = ctx42.createImageData(width1, height1);
+const canvas54 = document.getElementById('canvas54'), ctx54 = canvas54.getContext('2d');
+const idata54 = ctx54.createImageData(width1, height1);
 
 // const canvas55 = document.getElementById('canvas55'), ctx55 = canvas55.getContext('2d');
 // const idata55 = ctx55.createImageData(width1, height1);
@@ -54,14 +54,14 @@ video.addEventListener('play', () => {
 
     grayScale = await faceapi.nets.ssdMobilenetv1.getGrayScale();
     grayScale2 = await faceapi.nets.ssdMobilenetv1.getGrayScale_conv11();
-    idata2.data.set(grayScale[0]);
-    ctx2.putImageData(idata2, 0, 0);
+    idata42.data.set(grayScale[0]);
+    ctx42.putImageData(idata42, 0, 0);
 
     // idata26.data.set(grayScale[1]);
     // ctx26.putImageData(idata26, 0, 0);
 
-    idata42.data.set(grayScale[2]);
-    ctx42.putImageData(idata42, 0, 0);
+    idata54.data.set(grayScale[2]);
+    ctx54.putImageData(idata54, 0, 0);
     
     // idata55.data.set(grayScale[3]);
     // ctx55.putImageData(idata55, 0, 0);
