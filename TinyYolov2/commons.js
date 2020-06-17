@@ -9,67 +9,63 @@ async function startVideo() {
   video.srcObject = stream
 }
 
-const width1 = 414, height1 = 414;
-// const width2 = 32, height2 = 32;
-const canvas42 = document.getElementById('canvas42'), ctx42 = canvas42.getContext('2d');
-const idata42 = ctx42.createImageData(width1, height1);
+const width1 = 255, height1 = 255;
+const width2 = 32, height2 = 32;
+const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d');
+const idata2 = ctx2.createImageData(width1, height1);
 
-// // const canvas26 = document.getElementById('canvas26'), ctx26 = canvas26.getContext('2d');
-// // const idata26 = ctx26.createImageData(width1, height1);
+const canvas8 = document.getElementById('canvas8'), ctx8 = canvas8.getContext('2d');
+const idata8 = ctx8.createImageData(width1, height1);
 
-// const canvas54 = document.getElementById('canvas54'), ctx54 = canvas54.getContext('2d');
-// const idata54 = ctx54.createImageData(width1, height1);
+const canvas11 = document.getElementById('canvas11'), ctx11 = canvas11.getContext('2d');
+const idata11 = ctx11.createImageData(width1, height1);
 
-// // const canvas55 = document.getElementById('canvas55'), ctx55 = canvas55.getContext('2d');
-// // const idata55 = ctx55.createImageData(width1, height1);
+const canvas85 = document.getElementById('canvas85'), ctx85 = canvas85.getContext('2d');
+const idata85 = ctx85.createImageData(width2, height2);
 
-// const canvas60 = document.getElementById('canvas60'), ctx60 = canvas60.getContext('2d');
-// const idata60 = ctx60.createImageData(width1, height1);
+const canvas90 = document.getElementById('canvas90'), ctx90 = canvas90.getContext('2d');
+const idata90 = ctx90.createImageData(width2, height2);
 
-// const canvas85 = document.getElementById('canvas85'), ctx85 = canvas85.getContext('2d');
-// const idata85 = ctx85.createImageData(width2, height2);
+const canvas333 = document.getElementById('canvas333'), ctx333 = canvas333.getContext('2d');
+const idata333 = ctx333.createImageData(width2, height2);
 
-// const canvas90 = document.getElementById('canvas90'), ctx90 = canvas90.getContext('2d');
-// const idata90 = ctx90.createImageData(width2, height2);
-
-// const canvas333 = document.getElementById('canvas333'), ctx333 = canvas333.getContext('2d');
-// const idata333 = ctx333.createImageData(width2, height2);
-
-// const canvas463 = document.getElementById('canvas463'), ctx463 = canvas463.getContext('2d');
-// const idata463 = ctx463.createImageData(width2, height2);
+const canvas463 = document.getElementById('canvas463'), ctx463 = canvas463.getContext('2d');
+const idata463 = ctx463.createImageData(width2, height2);
 
 const canvas = document.getElementById('overlay');
 canvas.width = 640, canvas.height = 480;
 const displaySize = { width: video.width, height: video.height }
 
+let inputSize = 512
+let scoreThreshold = 0.2
+
 video.addEventListener('play', () => {
   faceapi.matchDimensions(canvas, displaySize);
   setInterval(async () => {
-    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions());
+    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold }));
 
     grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale()
-    // console.log(conv1)
-    // grayScale2 = await faceapi.nets.ssdMobilenetv1.getGrayScale_conv11();
-    idata42.data.set(grayScale);
-    ctx42.putImageData(idata42, 0, 0);
+    grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv11();
+    idata2.data.set(grayScale[0]);
+    ctx2.putImageData(idata2, 0, 0);
 
-    // idata54.data.set(grayScale[2]);
-    // ctx54.putImageData(idata54, 0, 0);
+    idata8.data.set(grayScale[1]);
+    ctx8.putImageData(idata8, 0, 0);
+
+    idata11.data.set(grayScale[2]);
+    ctx11.putImageData(idata11, 0, 0);
     
-    // idata60.data.set(grayScale[4]);
-    // ctx60.putImageData(idata60, 0, 0);
+    idata85.data.set(grayScale2[0]);
+    ctx85.putImageData(idata85, 0, 0);
 
-    // idata85.data.set(grayScale2[0]);
-    // ctx85.putImageData(idata85, 0, 0);
+    idata90.data.set(grayScale2[1]);
+    ctx90.putImageData(idata90, 0, 0);
 
-    // idata90.data.set(grayScale2[1]);
-    // ctx90.putImageData(idata90, 0, 0);
+    idata333.data.set(grayScale2[2]);
+    ctx333.putImageData(idata333, 0, 0);
 
-    // idata333.data.set(grayScale2[2]);
-    // ctx333.putImageData(idata333, 0, 0);
-
-    // idata463.data.set(grayScale2[3]);
-    // ctx463.putImageData(idata463, 0, 0);
+    idata463.data.set(grayScale2[3]);
+    ctx463.putImageData(idata463, 0, 0);
     
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
