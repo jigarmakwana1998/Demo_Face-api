@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script defer src="../dist/FileSaver.js"></script>
+  <script defer src="../dist/face-api.js"></script>
+  <script defer src="../public/js/TinyYoloV2.js"></script>
+  <link rel="stylesheet" href="../public/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+
+<body style="background-color:#FFFFE0;">
+  <div id="navbar"></div>
+  <div class="center-content page-container">
+
+    <div class="progress" id="loader">
+      <div class="indeterminate"></div>
+    </div>
+    <div style="position: relative" class="margin">
+      <video width="640" height="480" onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted
+        playsinline></video>
+      <canvas id="overlay" />
+    </div>
+    <h4>Convolutional Layer : 1</h4>
+    <div class="row side-by-side margin">
+      <div class="column">
+        <label for="canvas2"> kernel: 2</label>
+        <canvas id="canvas2" width="256" height="256" />
+      </div>
+      <div class="column">
+        <label for="canvas8"> kernel: 8</label>
+        <canvas id="canvas8" width="256" height="256" />
+      </div>
+      <div class="column">
+        <label for="canvas11"> kernel: 11</label>
+        <canvas id="canvas11" width="256" height="256" />
+      </div>
+    </div>
+    <h4>Convolutional Layer : 4</h4>
+    <div class="row side-by-side margin">
+      <div class="column">
+        <canvas id="canvas21" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel21">kernel: 21</p>
+      </div>
+      <div class="column">
+        <canvas id="canvas25" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel25">kernel: 25</p>
+      </div>
+      <div class="column">
+        <canvas id="canvas73" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel73">kernel: 73</p>
+      </div>
+      <div class="column">
+        <canvas id="canvas122" width="32" height="32" style="width: 128px; height: 128px;"></canvas>
+        <p id="kernel122">kernel: 122</p>
+      </div>
+    </div>
+    <div class="row side-by-side">
+      <button id="create" onclick="generate()">Create file</button>
+    </div>
+  </div>
+</body>
+
+<script>
+  const width1 = 255, height1 = 255;
+  const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d'), idata2 = ctx2.createImageData(width1, height1);
+  const canvas8 = document.getElementById('canvas8'), ctx8 = canvas8.getContext('2d'), idata8 = ctx8.createImageData(width1, height1);
+  const canvas11 = document.getElementById('canvas11'), ctx11 = canvas11.getContext('2d'), idata11 = ctx11.createImageData(width1, height1);
+
+  const width2 = 32, height2 = 32;
+  const canvas21 = document.getElementById('canvas21'), ctx21 = canvas21.getContext('2d'), idata21 = ctx21.createImageData(width2, height2);
+  const canvas25 = document.getElementById('canvas25'), ctx25 = canvas25.getContext('2d'), idata25 = ctx25.createImageData(width2, height2);
+  const canvas73 = document.getElementById('canvas73'), ctx73 = canvas73.getContext('2d'), idata73 = ctx73.createImageData(width2, height2);
+  const canvas122 = document.getElementById('canvas122'), ctx122 = canvas122.getContext('2d'), idata122 = ctx122.createImageData(width2, height2);
+
+  async function generate() {
+    var data = Promise.resolve(await faceapi.nets.tinyFaceDetector.getConvLayerString());
+    data.then(vals => {
+      var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "output.txt");
+    });
+  }
+
+  async function onPlay() {
+    const videoEl = $('#inputVideo').get(0)
+    if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
+      return setTimeout(() => onPlay())
+
+    const result = await faceapi.detectAllFaces(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold }))
+    const grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale();
+    const grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv11();
+
+    idata2.data.set(grayScale[0]);
+    ctx2.putImageData(idata2, 0, 0);
+
+    idata8.data.set(grayScale[1]);
+    ctx8.putImageData(idata8, 0, 0);
+
+    idata11.data.set(grayScale[2]);
+    ctx11.putImageData(idata11, 0, 0);
+
+    idata21.data.set(grayScale2[0]);
+    ctx21.putImageData(idata21, 0, 0);
+
+    idata25.data.set(grayScale2[1]);
+    ctx25.putImageData(idata25, 0, 0);
+
+    idata73.data.set(grayScale2[2]);
+    ctx73.putImageData(idata73, 0, 0);
+
+    idata122.data.set(grayScale2[3]);
+    ctx122.putImageData(idata122, 0, 0);
+
+    if (result) {
+      const canvas = $('#overlay').get(0)
+      const dims = faceapi.matchDimensions(canvas, videoEl, true)
+      faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims))
+    }
+
+    setTimeout(() => onPlay())
+  }
+
+  async function run() {
+    await loadFaceDetector()
+    const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
+    const videoEl = $('#inputVideo').get(0)
+    videoEl.srcObject = stream
+  }
+
+  function updateResults() { }
+
+  $(document).ready(function () {
+    run()
+  })
+</script>
+</body>
+
+</html>

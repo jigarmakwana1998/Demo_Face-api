@@ -1,6 +1,5 @@
 // let selectedFaceDetector = SSD_MOBILENETV1
 let minConfidence = 0.5
-let flag = 0
 
 let kernelNumber = 0
 function getFaceDetectorOptions() {
