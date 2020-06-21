@@ -4775,6 +4775,15 @@
                           var grayScale = [];
                           for (var i = 0; i < 4; i++) {
                               var saveconv = _this.save_conv11.slice(list[i], list[i] + 1)[0];
+                              var maxRow = saveconv.map(function (row) { return Math.max.apply(Math, row); });
+                              var max = Math.max.apply(null, maxRow);
+                              var minRow = saveconv.map(function (row) { return Math.min.apply(Math, row); });
+                              var min = Math.min.apply(null, minRow);
+                              saveconv = saveconv.map(function (x) {
+                                  return x.map(function (y) {
+                                      return ((y - min) * 255) / (max - min);
+                                  });
+                              });
                               // const convertedconv = saveconv[0];
                               var alpha = Hn([32, 32], 255);
                               var grayScaleImage = Pr([saveconv, saveconv, saveconv, alpha], 2);
