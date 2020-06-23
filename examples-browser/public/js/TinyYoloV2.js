@@ -1,4 +1,4 @@
-const inputSize = 512
+const inputSize = 224
 const scoreThreshold = 0.2
 
 function getFaceDetectorOptions() {

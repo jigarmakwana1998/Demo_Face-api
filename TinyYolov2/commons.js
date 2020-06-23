@@ -9,8 +9,8 @@ async function startVideo() {
   video.srcObject = stream
 }
 
-const width1 = 255, height1 = 255;
-const width2 = 32, height2 = 32;
+const width1 = 111, height1 = 111;
+const width2 = 14, height2 = 14;
 const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d');
 const idata2 = ctx2.createImageData(width1, height1);
 
@@ -36,7 +36,7 @@ const canvas = document.getElementById('overlay');
 canvas.width = 640, canvas.height = 480;
 const displaySize = { width: video.width, height: video.height }
 
-let inputSize = 512
+let inputSize = 224
 let scoreThreshold = 0.2
 
 video.addEventListener('play', () => {
