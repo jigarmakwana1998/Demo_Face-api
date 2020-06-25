@@ -32,6 +32,12 @@ const idata333 = ctx333.createImageData(width2, height2);
 const canvas463 = document.getElementById('canvas463'), ctx463 = canvas463.getContext('2d');
 const idata463 = ctx463.createImageData(width2, height2);
 
+const canvas333a = document.getElementById('canvas333a'), ctx333a = canvas333a.getContext('2d');
+const idata333a = ctx333a.createImageData(width2, height2);
+
+const canvas463a = document.getElementById('canvas463a'), ctx463a = canvas463a.getContext('2d');
+const idata463a = ctx463a.createImageData(width2, height2);
+
 const canvas = document.getElementById('overlay');
 canvas.width = 640, canvas.height = 480;
 const displaySize = { width: video.width, height: video.height }
@@ -45,7 +51,7 @@ video.addEventListener('play', () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold }));
 
     grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale()
-    grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv11();
+    grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv4();
     idata2.data.set(grayScale[0]);
     ctx2.putImageData(idata2, 0, 0);
 
@@ -66,6 +72,12 @@ video.addEventListener('play', () => {
 
     idata463.data.set(grayScale2[3]);
     ctx463.putImageData(idata463, 0, 0);
+
+    idata333a.data.set(grayScale2[2]);
+    ctx333a.putImageData(idata333a, 0, 0);
+
+    idata463a.data.set(grayScale2[3]);
+    ctx463a.putImageData(idata463a, 0, 0);
     
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
