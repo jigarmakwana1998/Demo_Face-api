@@ -6,105 +6,75 @@
   <script defer src="face-api.js"></script>
   <script defer src="FileSaver.js"></script>
   <script defer src="commons.js"></script>
-  <style>
-    body {
-      /* margin-right: auto; */
-      /* align-left: 400px; */
-      /* margin-left: 200px; */
-      /* margin-top: 150px; */
-      margin-top: 50 px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 50px;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  </style>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body style="background-color:#FFFFE0;">
-  <div style="position: absolute; margin-top: -25px;">
+<body style="background-color:#FFFFE0; margin-top: 50px; margin-left: 10px; margin-right: 20px;">
+  <div style="justify-content: center; align-items: center; display: flex;">
     <video width="640" height="480" id="inputVideo" autoplay muted playsinline></video>
-    <canvas id="overlay" />
+    <canvas id="overlay" style="position: absolute;" />
   </div>
-  <h3 style="position:absolute; top:560px; left: 825px;">Convolutional Layer : 1</h3>
   <div class="row">
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas2" width="256" height="256" style="position: absolute; width: 512px; height: 512px; left: 450px; top: 650px;"></canvas>
-      <p id="kernel2" style="position:absolute; top:600px; left: 540px;">kernel: 2</p>
+    <div class="col-sm-6" style="text-align: center;">
+      <h3 style="text-align: center;">Convolutional Layer : 1</h3>
+      <div class="row">
+        <div class="col-sm-4" style="text-align: center;">
+          <canvas id="canvas2" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
+          <p id="kernel2">kernel: 2</p>
+        </div>
+        <div class="col-sm-4" style="text-align: center;">
+          <canvas id="canvas8" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
+          <p id="kernel8">kernel: 8</p>
+        </div>
+        <div class="col-sm-4" style="text-align: center;">
+          <canvas id="canvas11" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
+          <p id="kernel11">kernel: 11</p>
+        </div>
+      </div>
     </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas8" width="256" height="256" style="position: absolute; width: 512px; height: 512px; left: 800px; top: 650px;"></canvas>
-      <p id="kernel8" style="position:absolute; top:600px; left: 890px;">kernel: 8</p>
+    <div class="col-sm-6">
+      <h3 style="text-align: center;">Convolutional Layer : 4</h3>
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col-sm-3" style="text-align: center;">
+          <canvas id="canvas85" width="14" height="14" style="width: 175px; height: 175px;"></canvas>
+          <p id="kernel85">kernel: 21</p>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+          <canvas id="canvas90" width="14" height="14" style="width: 175px; height: 175px;"></canvas>
+          <p id="kernel90">kernel: 25</p>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+          <canvas id="canvas333" width="14" height="14" style="width: 175px; height: 175px;"></canvas>
+          <p id="kernel333">kernel: 73</p>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+          <canvas id="canvas463" width="14" height="14" style="width: 175px; height: 175px;"></canvas>
+          <p id="kernel463">kernel: 122</p>
+        </div>
+      </div>
     </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas11" width="256" height="256" style="position: absolute; width: 512px; height: 512px; left: 1150px; top: 650px;"></canvas>
-      <p id="kernel11" style="position:absolute; top:600px; left: 1240px;">kernel: 11</p>
-    </div>
+    <!-- <div style="margin-left: auto; margin-right: auto; padding-top: 525px;">
+      <button id="create" onclick="generate()">Create file</button>
+    </div> -->
+    <p style="text-align: center;">-----------------------------</p>
   </div>
-  <h3 style="position:absolute; top:910px; left: 825px;">Convolutional Layer : 4</h3>
-
-  <div class="row" style="margin-bottom: 50px;">
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas85" width="14" height="14"
-        style="position: absolute; left: 575px; top: 1010px; width: 112px; height: 112px; image-rendering: auto"></canvas>
-      <p id="kernel85" style="position:absolute; top:960px; left: 600px;">kernel: 21</p>
-    </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas90" width="14" height="14"
-        style="position: absolute; left: 775px; top: 1010px; width: 112px; height: 112px; image-rendering: auto"></canvas>
-      <p id="kernel90" style="position:absolute; top:960px; left: 800px;">kernel: 25</p>
-    </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas333" width="14" height="14"
-        style="position: absolute; left: 975px; top: 1010px; width: 112px; height: 112px; image-rendering: auto"></canvas>
-      <p id="kernel333" style="position:absolute; top:960px; left: 1000px;">kernel: 73</p>
-    </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas463" width="14" height="14"
-        style="position: absolute; left: 1175px; top: 1010px; width: 112px; height: 112px; image-rendering: auto"></canvas>
-      <p id="kernel463" style="position:absolute; top:960px; left: 1200px;">kernel: 122</p>
-    </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas333a" width="14" height="14"
-        style="position: absolute; left: 975px; top: 1210px; width: 112px; height: 112px; image-rendering: pixelated"></canvas>
-      <p id="kernel333a" style="position:absolute; top:1160px; left: 1000px;">kernel: 73</p>
-    </div>
-    <div class="column" style="background-color:#bbb;">
-      <canvas id="canvas463a" width="14" height="14"
-        style="position: absolute; left: 1175px; top: 1210px; width: 112px; height: 112px; image-rendering: pixelated"></canvas>
-      <p id="kernel463a" style="position:absolute; top:1160px; left: 1200px;">kernel: 122</p>
-    </div>
-  </div>
-  <div style="margin-left: auto; margin-right: auto; padding-top: 525px;">
-    <button id="create" onclick="generate()">Create file</button>
-  </div>
-  <p style="position: absolute; margin-left: auto; margin-right: auto; top: 1150px;">-----------------------------</p>
 </body>
 <script>
-  async function generate() {
-    var data = Promise.resolve(await faceapi.nets.tinyFaceDetector.getConvLayerString());
-    data.then(vals => {
-      var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
-      saveAs(blob, "output.txt");
-    });
+  // async function generate() {
+  //   var data = Promise.resolve(await faceapi.nets.tinyFaceDetector.getConvLayerString());
+  //   data.then(vals => {
+  //     var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
+  //     saveAs(blob, "output.txt");
+  //   });
 
     // var input_data = Promise.resolve(await faceapi.nets.ssdMobilenetv1.getInputString());
     // input_data.then(vals => {
     //   var blob = new Blob([vals], { type: "text/plain;charset=utf-8" });
     //   saveAs(blob, "input.txt");
     // });
-  }
+  // }
 </script>
 
 </html>

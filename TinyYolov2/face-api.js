@@ -4657,10 +4657,10 @@
           out = hl(out, [2, 2], [2, 2], 'same');
           out = convWithBatchNorm(out, params.conv5);
           out = hl(out, [2, 2], [1, 1], 'same');
-          var get_conv7 = out;
           out = convWithBatchNorm(out, params.conv6);
           out = convWithBatchNorm(out, params.conv7);
           out = convLayer(out, params.conv8, 'valid', false);
+          var get_conv7 = out;
           return {
               out: out,
               save_conv1: get_conv1,
@@ -4685,10 +4685,10 @@
           out = hl(out, [2, 2], [2, 2], 'same');
           out = depthwiseSeparableConv$1(out, params.conv5);
           out = hl(out, [2, 2], [1, 1], 'same');
-          var get_conv7 = out;
           out = params.conv6 ? depthwiseSeparableConv$1(out, params.conv6) : out;
           out = params.conv7 ? depthwiseSeparableConv$1(out, params.conv7) : out;
           out = convLayer(out, params.conv8, 'valid', false);
+          var get_conv7 = out;
           return {
               out: out,
               save_conv1: get_conv1,
@@ -4712,8 +4712,8 @@
                   ? _this.runMobilenet(batchTensor, params)
                   : _this.runTinyYolov2(batchTensor, params);
               _this.save_conv1 = Wl(features.save_conv1.sub(features.save_conv1.min()).div(features.save_conv1.max().sub(features.save_conv1.min())).mul(255.0), [0, 3, 1, 2]).reshape([16, 111, 111]).arraySync();
-              _this.save_conv4 = Wl(features.save_conv4.sub(features.save_conv4.min()).div(features.save_conv4.max().sub(features.save_conv4.min())).mul(-255.0).add(255), [0, 3, 1, 2]).reshape([128, 14, 14]).arraySync();
-              _this.save_conv7 = Wl(features.save_conv7.sub(features.save_conv7.min()).div(features.save_conv7.max().sub(features.save_conv7.min())).mul(-255.0).add(255), [0, 3, 1, 2]).reshape([512, 7, 7]).arraySync();
+              _this.save_conv4 = Wl(features.save_conv4.sub(features.save_conv4.min()).div(features.save_conv4.max().sub(features.save_conv4.min())).mul(255.0), [0, 3, 1, 2]).reshape([128, 14, 14]).arraySync();
+              _this.save_conv7 = Wl(features.save_conv7.sub(features.save_conv7.min()).div(features.save_conv7.max().sub(features.save_conv7.min())).mul(255.0), [0, 3, 1, 2]).arraySync();
               return features.out;
           });
       };
@@ -4768,7 +4768,15 @@
                           var grayScale = [];
                           for (var i = 0; i < 3; i++) {
                               var saveconv = _this.save_conv1.slice(list[i], list[i] + 1)[0];
-                              // const convertedconv = saveconv[0];
+                              var maxRow = saveconv.map(function (row) { return Math.max.apply(Math, row); });
+                              var max = Math.max.apply(null, maxRow);
+                              var minRow = saveconv.map(function (row) { return Math.min.apply(Math, row); });
+                              var min = Math.min.apply(null, minRow);
+                              saveconv = saveconv.map(function (x) {
+                                  return x.map(function (y) {
+                                      return ((y - min) * 255) / (max - min);
+                                  });
+                              });
                               var alpha = Hn([111, 111], 255);
                               var grayScaleImage = Pr([saveconv, saveconv, saveconv, alpha], 2);
                               grayScale.push(grayScaleImage.as1D().arraySync());

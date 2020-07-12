@@ -12,7 +12,6 @@
 </head>
 
 <body style="background-color:#FFFFE0;">
-  <div id="navbar"></div>
   <div class="center-content page-container">
 
     <div class="progress" id="loader">
@@ -23,42 +22,45 @@
         playsinline></video>
       <canvas id="overlay" />
     </div>
-    <h4>Convolutional Layer : 1</h4>
-    <div class="row side-by-side margin">
-      <div class="column">
-        <label for="canvas2"> kernel: 2</label>
-        <canvas id="canvas2" width="111" height="111" style="width: 222px; height: 222px;" />
+    <div class="row side-by-side" style="margin-top: 0px;">
+      <div class="column center-content" style="margin-top: 0px;">
+        <h4 style="text-align: center;">Convolutional Layer : 1</h4>
+        <div class="row side-by-side" style="margin-top: 0px;">
+          <div class="column center-content">
+            <canvas id="canvas2" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
+            <p style="text-align: center;" id="pcanvas2"> kernel: 2</p>
+          </div>
+          <div class="column center-content">
+            <canvas id="canvas8" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
+            <p style="text-align: center;" id="pcanvas8"> kernel: 8</p>
+          </div>
+          <div class="column center-content">
+            <canvas id="canvas11" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
+            <p style="text-align: center;" id="pcanvas11"> kernel: 11</p>
+          </div>
+        </div>
       </div>
-      <div class="column">
-        <label for="canvas8"> kernel: 8</label>
-        <canvas id="canvas8" width="111" height="111" style="width: 222px; height: 222px;" />
+      <div class="column center-content" style="margin-top: 0px;">
+        <h4 style="text-align: center;">Convolutional Layer : 4</h4>
+        <div class="row side-by-side" style="margin-top: 0px;">
+          <div class="column center-content">
+            <canvas id="canvas21" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
+            <p style="text-align: center;" id="kernel21">kernel: 21</p>
+          </div>
+          <div class="column center-content">
+            <canvas id="canvas25" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
+            <p style="text-align: center;" id="kernel25">kernel: 25</p>
+          </div>
+          <div class="column center-content">
+            <canvas id="canvas73" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
+            <p style="text-align: center;" id="kernel73">kernel: 73</p>
+          </div>
+          <div class="column center-content">
+            <canvas id="canvas122" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
+            <p style="text-align: center;" id="kernel122">kernel: 122</p>
+          </div>
+        </div>
       </div>
-      <div class="column">
-        <label for="canvas11"> kernel: 11</label>
-        <canvas id="canvas11" width="111" height="111" style="width: 222px; height: 222px;" />
-      </div>
-    </div>
-    <h4>Convolutional Layer : 4</h4>
-    <div class="row side-by-side margin">
-      <div class="column">
-        <canvas id="canvas21" width="14" height="14" style="width: 112px; height: 112px;"></canvas>
-        <p id="kernel21">kernel: 21</p>
-      </div>
-      <div class="column">
-        <canvas id="canvas25" width="14" height="14" style="width: 112px; height: 112px;"></canvas>
-        <p id="kernel25">kernel: 25</p>
-      </div>
-      <div class="column">
-        <canvas id="canvas73" width="14" height="14" style="width: 112px; height: 112px;"></canvas>
-        <p id="kernel73">kernel: 73</p>
-      </div>
-      <div class="column">
-        <canvas id="canvas122" width="14" height="14" style="width: 112px; height: 112px;"></canvas>
-        <p id="kernel122">kernel: 122</p>
-      </div>
-    </div>
-    <div class="row side-by-side">
-      <button id="create" onclick="generate()">Create file</button>
     </div>
   </div>
 </body>
@@ -90,7 +92,7 @@
 
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold }))
     const grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale();
-    const grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv11();
+    const grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv4();
 
     idata2.data.set(grayScale[0]);
     ctx2.putImageData(idata2, 0, 0);
