@@ -29,18 +29,43 @@
           <div class="column center-content">
             <canvas id="canvas2" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
             <p style="text-align: center;" id="pcanvas2"> kernel: 2</p>
+
+          </div>
+          <div class="column" style="margin-top: 0px;">
+            <canvas id="kernel2_0" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel2_1" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel2_2" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
           </div>
           <div class="column center-content">
             <canvas id="canvas8" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
             <p style="text-align: center;" id="pcanvas8"> kernel: 8</p>
           </div>
+          <div class="column" style="margin-top: 0px;">
+            <canvas id="kernel8_0" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel8_1" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel8_2" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+          </div>
           <div class="column center-content">
             <canvas id="canvas11" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
             <p style="text-align: center;" id="pcanvas11"> kernel: 11</p>
           </div>
+          <div class="column" style="margin-top: 0px;">
+            <canvas id="kernel11_0" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel11_1" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel11_2" width="3" height="3"
+              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+          </div>
         </div>
       </div>
-      <div class="column center-content" style="margin-top: 0px;">
+      <!-- <div class="column center-content" style="margin-top: 0px;">
         <h4 style="text-align: center;">Convolutional Layer : 4</h4>
         <div class="row side-by-side" style="margin-top: 0px;">
           <div class="column center-content">
@@ -60,22 +85,34 @@
             <p style="text-align: center;" id="kernel122">kernel: 122</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </body>
 
 <script>
+  const width = 3, height = 3;
+  const canvas2_0 = document.getElementById('kernel2_0'), ctx2_0 = canvas2_0.getContext('2d'), idata2_0 = ctx2_0.createImageData(width, height);
+  const canvas2_1 = document.getElementById('kernel2_1'), ctx2_1 = canvas2_1.getContext('2d'), idata2_1 = ctx2_1.createImageData(width, height);
+  const canvas2_2 = document.getElementById('kernel2_2'), ctx2_2 = canvas2_2.getContext('2d'), idata2_2 = ctx2_2.createImageData(width, height);
+  const canvas8_0 = document.getElementById('kernel8_0'), ctx8_0 = canvas8_0.getContext('2d'), idata8_0 = ctx8_0.createImageData(width, height);
+  const canvas8_1 = document.getElementById('kernel8_1'), ctx8_1 = canvas8_1.getContext('2d'), idata8_1 = ctx8_1.createImageData(width, height);
+  const canvas8_2 = document.getElementById('kernel8_2'), ctx8_2 = canvas8_2.getContext('2d'), idata8_2 = ctx8_2.createImageData(width, height);
+  const canvas11_0 = document.getElementById('kernel11_0'), ctx11_0 = canvas11_0.getContext('2d'), idata11_0 = ctx11_0.createImageData(width, height);
+  const canvas11_1 = document.getElementById('kernel11_1'), ctx11_1 = canvas11_1.getContext('2d'), idata11_1 = ctx11_1.createImageData(width, height);
+  const canvas11_2 = document.getElementById('kernel11_2'), ctx11_2 = canvas11_2.getContext('2d'), idata11_2 = ctx11_2.createImageData(width, height);
+
+
   const width1 = 111, height1 = 111;
   const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d'), idata2 = ctx2.createImageData(width1, height1);
   const canvas8 = document.getElementById('canvas8'), ctx8 = canvas8.getContext('2d'), idata8 = ctx8.createImageData(width1, height1);
   const canvas11 = document.getElementById('canvas11'), ctx11 = canvas11.getContext('2d'), idata11 = ctx11.createImageData(width1, height1);
 
-  const width2 = 14, height2 = 14;
-  const canvas21 = document.getElementById('canvas21'), ctx21 = canvas21.getContext('2d'), idata21 = ctx21.createImageData(width2, height2);
-  const canvas25 = document.getElementById('canvas25'), ctx25 = canvas25.getContext('2d'), idata25 = ctx25.createImageData(width2, height2);
-  const canvas73 = document.getElementById('canvas73'), ctx73 = canvas73.getContext('2d'), idata73 = ctx73.createImageData(width2, height2);
-  const canvas122 = document.getElementById('canvas122'), ctx122 = canvas122.getContext('2d'), idata122 = ctx122.createImageData(width2, height2);
+  // const width2 = 14, height2 = 14;
+  // const canvas21 = document.getElementById('canvas21'), ctx21 = canvas21.getContext('2d'), idata21 = ctx21.createImageData(width2, height2);
+  // const canvas25 = document.getElementById('canvas25'), ctx25 = canvas25.getContext('2d'), idata25 = ctx25.createImageData(width2, height2);
+  // const canvas73 = document.getElementById('canvas73'), ctx73 = canvas73.getContext('2d'), idata73 = ctx73.createImageData(width2, height2);
+  // const canvas122 = document.getElementById('canvas122'), ctx122 = canvas122.getContext('2d'), idata122 = ctx122.createImageData(width2, height2);
 
   async function generate() {
     var data = Promise.resolve(await faceapi.nets.tinyFaceDetector.getConvLayerString());
@@ -92,28 +129,50 @@
 
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold }))
     const grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale();
+    const getKernel_0 = await faceapi.nets.tinyFaceDetector.getKernel_0();
     const grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv4();
 
     idata2.data.set(grayScale[0]);
     ctx2.putImageData(idata2, 0, 0);
 
+    idata2_0.data.set(getKernel_0[0]);
+    ctx2_0.putImageData(idata2_0, 0, 0);
+    idata2_1.data.set(getKernel_0[1]);
+    ctx2_1.putImageData(idata2_1, 0, 0);
+    idata2_2.data.set(getKernel_0[2]);
+    ctx2_2.putImageData(idata2_2, 0, 0);
+
     idata8.data.set(grayScale[1]);
     ctx8.putImageData(idata8, 0, 0);
+
+    idata8_0.data.set(getKernel_0[3]);
+    ctx8_0.putImageData(idata8_0, 0, 0);
+    idata8_1.data.set(getKernel_0[4]);
+    ctx8_1.putImageData(idata8_1, 0, 0);
+    idata8_2.data.set(getKernel_0[5]);
+    ctx8_2.putImageData(idata8_2, 0, 0);
 
     idata11.data.set(grayScale[2]);
     ctx11.putImageData(idata11, 0, 0);
 
-    idata21.data.set(grayScale2[0]);
-    ctx21.putImageData(idata21, 0, 0);
+    idata11_0.data.set(getKernel_0[6]);
+    ctx11_0.putImageData(idata11_0, 0, 0);
+    idata11_1.data.set(getKernel_0[7]);
+    ctx11_1.putImageData(idata11_1, 0, 0);
+    idata11_2.data.set(getKernel_0[8]);
+    ctx11_2.putImageData(idata11_2, 0, 0);
 
-    idata25.data.set(grayScale2[1]);
-    ctx25.putImageData(idata25, 0, 0);
+    // idata21.data.set(grayScale2[0]);
+    // ctx21.putImageData(idata21, 0, 0);
 
-    idata73.data.set(grayScale2[2]);
-    ctx73.putImageData(idata73, 0, 0);
+    // idata25.data.set(grayScale2[1]);
+    // ctx25.putImageData(idata25, 0, 0);
 
-    idata122.data.set(grayScale2[3]);
-    ctx122.putImageData(idata122, 0, 0);
+    // idata73.data.set(grayScale2[2]);
+    // ctx73.putImageData(idata73, 0, 0);
+
+    // idata122.data.set(grayScale2[3]);
+    // ctx122.putImageData(idata122, 0, 0);
 
     if (result) {
       const canvas = $('#overlay').get(0)
