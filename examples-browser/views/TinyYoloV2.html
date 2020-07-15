@@ -65,27 +65,27 @@
           </div>
         </div>
       </div>
-      <!-- <div class="column center-content" style="margin-top: 0px;">
+      <div class="column center-content" style="margin-top: 0px;">
         <h4 style="text-align: center;">Convolutional Layer : 4</h4>
         <div class="row side-by-side" style="margin-top: 0px;">
           <div class="column center-content">
             <canvas id="canvas21" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel21">kernel: 21</p>
+            <p style="text-align: center;" id="kernel21">kernel: 26</p>
           </div>
           <div class="column center-content">
             <canvas id="canvas25" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel25">kernel: 25</p>
+            <p style="text-align: center;" id="kernel25">kernel: 36</p>
           </div>
           <div class="column center-content">
             <canvas id="canvas73" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel73">kernel: 73</p>
+            <p style="text-align: center;" id="kernel73">kernel: 46</p>
           </div>
           <div class="column center-content">
             <canvas id="canvas122" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel122">kernel: 122</p>
+            <p style="text-align: center;" id="kernel122">kernel: 112</p>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </body>
@@ -108,11 +108,11 @@
   const canvas8 = document.getElementById('canvas8'), ctx8 = canvas8.getContext('2d'), idata8 = ctx8.createImageData(width1, height1);
   const canvas11 = document.getElementById('canvas11'), ctx11 = canvas11.getContext('2d'), idata11 = ctx11.createImageData(width1, height1);
 
-  // const width2 = 14, height2 = 14;
-  // const canvas21 = document.getElementById('canvas21'), ctx21 = canvas21.getContext('2d'), idata21 = ctx21.createImageData(width2, height2);
-  // const canvas25 = document.getElementById('canvas25'), ctx25 = canvas25.getContext('2d'), idata25 = ctx25.createImageData(width2, height2);
-  // const canvas73 = document.getElementById('canvas73'), ctx73 = canvas73.getContext('2d'), idata73 = ctx73.createImageData(width2, height2);
-  // const canvas122 = document.getElementById('canvas122'), ctx122 = canvas122.getContext('2d'), idata122 = ctx122.createImageData(width2, height2);
+  const width2 = 14, height2 = 14;
+  const canvas21 = document.getElementById('canvas21'), ctx21 = canvas21.getContext('2d'), idata21 = ctx21.createImageData(width2, height2);
+  const canvas25 = document.getElementById('canvas25'), ctx25 = canvas25.getContext('2d'), idata25 = ctx25.createImageData(width2, height2);
+  const canvas73 = document.getElementById('canvas73'), ctx73 = canvas73.getContext('2d'), idata73 = ctx73.createImageData(width2, height2);
+  const canvas122 = document.getElementById('canvas122'), ctx122 = canvas122.getContext('2d'), idata122 = ctx122.createImageData(width2, height2);
 
   async function generate() {
     var data = Promise.resolve(await faceapi.nets.tinyFaceDetector.getConvLayerString());
@@ -162,17 +162,17 @@
     idata11_2.data.set(getKernel_0[8]);
     ctx11_2.putImageData(idata11_2, 0, 0);
 
-    // idata21.data.set(grayScale2[0]);
-    // ctx21.putImageData(idata21, 0, 0);
+    idata21.data.set(grayScale2[0]);
+    ctx21.putImageData(idata21, 0, 0);
 
-    // idata25.data.set(grayScale2[1]);
-    // ctx25.putImageData(idata25, 0, 0);
+    idata25.data.set(grayScale2[1]);
+    ctx25.putImageData(idata25, 0, 0);
 
-    // idata73.data.set(grayScale2[2]);
-    // ctx73.putImageData(idata73, 0, 0);
+    idata73.data.set(grayScale2[2]);
+    ctx73.putImageData(idata73, 0, 0);
 
-    // idata122.data.set(grayScale2[3]);
-    // ctx122.putImageData(idata122, 0, 0);
+    idata122.data.set(grayScale2[3]);
+    ctx122.putImageData(idata122, 0, 0);
 
     if (result) {
       const canvas = $('#overlay').get(0)

@@ -4755,7 +4755,7 @@
       TinyYolov2Base.prototype.getConvLayerString = function () {
           return __awaiter(this, void 0, void 0, function () {
               return __generator(this, function (_a) {
-                  return [2 /*return*/, this.save_conv7.toString()];
+                  return [2 /*return*/, this.save_conv4.toString()];
               });
           });
       };
