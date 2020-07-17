@@ -4791,7 +4791,7 @@
               var _this = this;
               return __generator(this, function (_a) {
                   return [2 /*return*/, Ze(function () {
-                          var list = [2, 8, 11, 13];
+                          var list = [21, 25, 73, 122];
                           var grayScale = [];
                           for (var i = 0; i < 4; i++) {
                               var saveconv = _this.save_conv4.slice(list[i], list[i] + 1)[0];

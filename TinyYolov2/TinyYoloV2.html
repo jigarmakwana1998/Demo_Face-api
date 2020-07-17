@@ -22,15 +22,27 @@
       <div class="row">
         <div class="col-sm-4" style="text-align: center;">
           <canvas id="canvas2" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-          <p id="kernel2">kernel: 2</p>
+          <form>
+            <label for="cars">Choose a Kernel:</label>
+            <select id="cars1" name="cars">
+            </select>
+          </form>
         </div>
         <div class="col-sm-4" style="text-align: center;">
           <canvas id="canvas8" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-          <p id="kernel8">kernel: 8</p>
+          <form>
+            <label for="cars">Choose a Kernel:</label>
+            <select id="cars2" name="cars">
+            </select>
+          </form>
         </div>
         <div class="col-sm-4" style="text-align: center;">
           <canvas id="canvas11" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-          <p id="kernel11">kernel: 11</p>
+          <form>
+            <label for="cars">Choose a Kernel:</label>
+            <select id="cars3" name="cars">
+            </select>
+          </form>
         </div>
       </div>
     </div>
@@ -62,6 +74,15 @@
   </div>
 </body>
 <script>
+
+var select = '';
+for (i=1;i<=16;i++){
+    select += '<option val=' + i + '>' + i + '</option>';
+}
+$('#cars1').html(select);
+$('#cars2').html(select);
+$('#cars3').html(select);
+
   async function generate() {
     var data = Promise.resolve(await faceapi.nets.tinyFaceDetector.getConvLayerString());
     data.then(vals => {

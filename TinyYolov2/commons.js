@@ -70,6 +70,11 @@ video.addEventListener('play', () => {
     const resizedDetections = faceapi.resizeResults(detections, displaySize);
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     faceapi.draw.drawDetections(canvas, resizedDetections);
+  cars1 = parseInt(document.getElementById("cars1").value)
+  cars2 = parseInt(document.getElementById("cars2").value)
+  cars3 = parseInt(document.getElementById("cars3").value)
+  console.log([cars1, cars2, cars3])
+
 
   }, 100)
 })

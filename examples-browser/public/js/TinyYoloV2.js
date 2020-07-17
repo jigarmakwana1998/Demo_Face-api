@@ -1,12 +1,51 @@
 const inputSize = 224
 const scoreThreshold = 0.2
+let kernel2 = 2
+let kernel8 = 8
+let kernel11 = 11
 
 function getFaceDetectorOptions() {
-  return  new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
+  return new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
+}
+
+function onIncrease1() {
+  kernel2 = Math.min(faceapi.utils.round(kernel2 + 1), 16)
+  $('#kernel2').val(kernel2)
+  updateResults()
+}
+
+function onDecrease1() {
+  kernel2 = Math.max(faceapi.utils.round(kernel2 - 1), 1)
+  $('#kernel2').val(kernel2)
+  updateResults()
+}
+
+function onIncrease2() {
+  kernel8 = Math.min(faceapi.utils.round(kernel8 + 1), 16)
+  $('#kernel8').val(kernel8)
+  updateResults()
+}
+
+function onDecrease2() {
+  kernel8 = Math.max(faceapi.utils.round(kernel8 - 1), 1)
+  $('#kernel8').val(kernel8)
+  updateResults()
+}
+
+function onIncrease3() {
+  kernel11 = Math.min(faceapi.utils.round(kernel11 + 1), 16)
+  $('#kernel11').val(kernel11)
+  updateResults()
+}
+
+function onDecrease3() {
+  kernel11 = Math.max(faceapi.utils.round(kernel11 - 1), 1)
+  $('#kernel11').val(kernel11)
+  updateResults()
 }
 
 function getCurrentFaceDetectionNet() {
-    return faceapi.nets.tinyFaceDetector
+  return faceapi.nets.tinyFaceDetector
 }
 
 function isFaceDetectionModelLoaded() {

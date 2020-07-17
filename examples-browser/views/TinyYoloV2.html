@@ -28,8 +28,24 @@
         <div class="row side-by-side" style="margin-top: 0px;">
           <div class="column center-content">
             <canvas id="canvas2" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-            <p style="text-align: center;" id="pcanvas2"> kernel: 2</p>
-
+            <div class="row side-by-side">
+              <div class="row">
+                <label for="kernel2">Min Confidence:</label>
+                <input disabled value="2" id="kernel2" type="text" class="bold">
+              </div>
+              <button
+                class="waves-effect waves-light btn"
+                onclick="onDecrease()"
+              >
+                <i class="material-icons left">-</i>
+              </button>
+              <button
+                class="waves-effect waves-light btn"
+                onclick="onIncrease()"
+              >
+                <i class="material-icons left">+</i>
+              </button>
+            </div>
           </div>
           <div class="column" style="margin-top: 0px;">
             <canvas id="kernel2_0" width="3" height="3"
@@ -41,7 +57,24 @@
           </div>
           <div class="column center-content">
             <canvas id="canvas8" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-            <p style="text-align: center;" id="pcanvas8"> kernel: 8</p>
+            <div class="row side-by-side">
+              <div class="row">
+                <label for="kernel8">Min Confidence:</label>
+                <input disabled value="8" id="kernel8" type="text" class="bold">
+              </div>
+              <button
+                class="waves-effect waves-light btn"
+                onclick="onDecrease2()"
+              >
+                <i class="material-icons left">-</i>
+              </button>
+              <button
+                class="waves-effect waves-light btn"
+                onclick="onIncrease2()"
+              >
+                <i class="material-icons left">+</i>
+              </button>
+            </div>
           </div>
           <div class="column" style="margin-top: 0px;">
             <canvas id="kernel8_0" width="3" height="3"
@@ -53,7 +86,24 @@
           </div>
           <div class="column center-content">
             <canvas id="canvas11" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-            <p style="text-align: center;" id="pcanvas11"> kernel: 11</p>
+            <div class="row side-by-side">
+              <div class="row">
+                <label for="kernel11">Min Confidence:</label>
+                <input disabled value="11" id="kernel11" type="text" class="bold">
+              </div>
+              <button
+                class="waves-effect waves-light btn"
+                onclick="onDecrease3()"
+              >
+                <i class="material-icons left">-</i>
+              </button>
+              <button
+                class="waves-effect waves-light btn"
+                onclick="onIncrease3()"
+              >
+                <i class="material-icons left">+</i>
+              </button>
+            </div>
           </div>
           <div class="column" style="margin-top: 0px;">
             <canvas id="kernel11_0" width="3" height="3"
@@ -91,6 +141,7 @@
 </body>
 
 <script>
+
   const width = 3, height = 3;
   const canvas2_0 = document.getElementById('kernel2_0'), ctx2_0 = canvas2_0.getContext('2d'), idata2_0 = ctx2_0.createImageData(width, height);
   const canvas2_1 = document.getElementById('kernel2_1'), ctx2_1 = canvas2_1.getContext('2d'), idata2_1 = ctx2_1.createImageData(width, height);
@@ -123,13 +174,19 @@
   }
 
   async function onPlay() {
+
+    kernels1 = parseInt(document.getElementById("kernel2").value)
+    kernels2 = parseInt(document.getElementById("kernel8").value)
+    kernels3 = parseInt(document.getElementById("kernel11").value)
+    list_kernels = [kernels1, kernels2, kernels3]
+
     const videoEl = $('#inputVideo').get(0)
     if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
       return setTimeout(() => onPlay())
 
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold }))
-    const grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale();
-    const getKernel_0 = await faceapi.nets.tinyFaceDetector.getKernel_0();
+    const grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale(list_kernels);
+    const getKernel_0 = await faceapi.nets.tinyFaceDetector.getKernel_0(list_kernels);
     const grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv4();
 
     idata2.data.set(grayScale[0]);
