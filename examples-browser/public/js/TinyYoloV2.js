@@ -9,37 +9,37 @@ function getFaceDetectorOptions() {
 }
 
 function onIncrease1() {
-  kernel2 = Math.min(faceapi.utils.round(kernel2 + 1), 16)
+  kernel2 = Math.min(faceapi.utils.round(kernel2 + 1), 15)
   $('#kernel2').val(kernel2)
   updateResults()
 }
 
 function onDecrease1() {
-  kernel2 = Math.max(faceapi.utils.round(kernel2 - 1), 1)
+  kernel2 = Math.max(faceapi.utils.round(kernel2 - 1), 0)
   $('#kernel2').val(kernel2)
   updateResults()
 }
 
 function onIncrease2() {
-  kernel8 = Math.min(faceapi.utils.round(kernel8 + 1), 16)
+  kernel8 = Math.min(faceapi.utils.round(kernel8 + 1), 15)
   $('#kernel8').val(kernel8)
   updateResults()
 }
 
 function onDecrease2() {
-  kernel8 = Math.max(faceapi.utils.round(kernel8 - 1), 1)
+  kernel8 = Math.max(faceapi.utils.round(kernel8 - 1), 0)
   $('#kernel8').val(kernel8)
   updateResults()
 }
 
 function onIncrease3() {
-  kernel11 = Math.min(faceapi.utils.round(kernel11 + 1), 16)
+  kernel11 = Math.min(faceapi.utils.round(kernel11 + 1), 15)
   $('#kernel11').val(kernel11)
   updateResults()
 }
 
 function onDecrease3() {
-  kernel11 = Math.max(faceapi.utils.round(kernel11 - 1), 1)
+  kernel11 = Math.max(faceapi.utils.round(kernel11 - 1), 0)
   $('#kernel11').val(kernel11)
   updateResults()
 }
