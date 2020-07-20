@@ -17,130 +17,147 @@
     <div class="progress" id="loader">
       <div class="indeterminate"></div>
     </div>
-    <div style="position: relative" class="margin">
-      <video width="640" height="480" onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted
-        playsinline></video>
-      <canvas id="overlay" />
-    </div>
     <div class="row side-by-side" style="margin-top: 0px;">
-      <div class="column center-content" style="margin-top: 0px;">
-        <h4 style="text-align: center;">Convolutional Layer : 1</h4>
-        <div class="row side-by-side" style="margin-top: 0px;">
-          <div class="column center-content">
-            <canvas id="canvas2" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-            <div class="row side-by-side">
-              <div class="row">
-                <label for="kernel2">Min Confidence:</label>
-                <input disabled value="2" id="kernel2" type="text" class="bold">
-              </div>
-              <button
-                class="waves-effect waves-light btn"
-                onclick="onDecrease1()"
-              >
-                <i class="material-icons left">-</i>
-              </button>
-              <button
-                class="waves-effect waves-light btn"
-                onclick="onIncrease1()"
-              >
-                <i class="material-icons left">+</i>
-              </button>
+      <div style="position: relative" class="margin">
+        <video width="640" height="480" onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted
+          playsinline></video>
+        <canvas id="overlay" />
+      </div>
+      <div class="column center-content">
+        <div class="column center-content" style="margin-top: 0px;">
+          <h5 style="text-align: center;">Convolutional Layer : 1</h5>
+          <div class="row side-by-side" style="margin-top: 0px;">
+            <canvas id="canvas2" width="111" height="111" style="width: 111px; height: 111px;"></canvas>
+            <div class="column" style="margin-top: 0px;">
+              <canvas id="kernel2_0" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+              <canvas id="kernel2_1" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+              <canvas id="kernel2_2" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+            </div>
+            <div class="input-field col s12">
+              <select id="kernel2">
+                <option value="0">0 - </option>
+                <option value="1">1 - Yellow patch detector</option>
+                <option value="2" selected>2 - Green patch detector</option>
+                <option value="3">3 - (Haar like feature)</option>
+                <option value="4">4 - Horizontal edge detector (black over white)</option>
+                <option value="5">5 - Negative</option>
+                <option value="6">6 - </option>
+                <option value="7">7 - Diagonal edge detector</option>
+                <option value="8">8 - Horizontal edge detector</option>
+                <option value="9">9 - Vertical edge detector</option>
+                <option value="10">10 - Horizontal edge detector</option>
+                <option value="11">11 - Red patch detector</option>
+                <option value="12">12 - Blue-Green patch detector</option>
+                <option value="13">13 - Vertical edge detector</option>
+                <option value="14">14 - </option>
+                <option value="15">15 - </option>
+              </select>
+              <label>Kernel Select</label>
             </div>
           </div>
-          <div class="column" style="margin-top: 0px;">
-            <canvas id="kernel2_0" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-            <canvas id="kernel2_1" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-            <canvas id="kernel2_2" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-          </div>
-          <div class="column center-content">
-            <canvas id="canvas8" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-            <div class="row side-by-side">
-              <div class="row">
-                <label for="kernel8">Min Confidence:</label>
-                <input disabled value="8" id="kernel8" type="text" class="bold">
-              </div>
-              <button
-                class="waves-effect waves-light btn"
-                onclick="onDecrease2()"
-              >
-                <i class="material-icons left">-</i>
-              </button>
-              <button
-                class="waves-effect waves-light btn"
-                onclick="onIncrease2()"
-              >
-                <i class="material-icons left">+</i>
-              </button>
+
+          <div class="row side-by-side" style="margin-top: 0px;">
+            <canvas id="canvas8" width="111" height="111" style="width: 111px; height: 111px;"></canvas>
+            <div class="column" style="margin-top: 0px;">
+              <canvas id="kernel8_0" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+              <canvas id="kernel8_1" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+              <canvas id="kernel8_2" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+            </div>
+            <div class="input-field col s12">
+              <select id="kernel8">
+                <option value="0">0 - </option>
+                <option value="1">1 - Yellow patch detector</option>
+                <option value="2">2 - Green patch detector</option>
+                <option value="3">3 - (Haar like feature)</option>
+                <option value="4">4 - Horizontal edge detector (black over white)</option>
+                <option value="5">5 - Negative</option>
+                <option value="6">6 - </option>
+                <option value="7">7 - Diagonal edge detector</option>
+                <option value="8" selected>8 - Horizontal edge detector</option>
+                <option value="9">9 - Vertical edge detector</option>
+                <option value="10">10 - Horizontal edge detector</option>
+                <option value="11">11 - Red patch detector</option>
+                <option value="12">12 - Blue-Green patch detector</option>
+                <option value="13">13 - Vertical edge detector</option>
+                <option value="14">14 - </option>
+                <option value="15">15 - </option>
+              </select>
+              <label>Kernel Select</label>
             </div>
           </div>
-          <div class="column" style="margin-top: 0px;">
-            <canvas id="kernel8_0" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-            <canvas id="kernel8_1" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-            <canvas id="kernel8_2" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-          </div>
-          <div class="column center-content">
-            <canvas id="canvas11" width="111" height="111" style="width: 222px; height: 222px;"></canvas>
-            <div class="row side-by-side">
-              <div class="row">
-                <label for="kernel11">Min Confidence:</label>
-                <input disabled value="11" id="kernel11" type="text" class="bold">
-              </div>
-              <button
-                class="waves-effect waves-light btn"
-                onclick="onDecrease3()"
-              >
-                <i class="material-icons left">-</i>
-              </button>
-              <button
-                class="waves-effect waves-light btn"
-                onclick="onIncrease3()"
-              >
-                <i class="material-icons left">+</i>
-              </button>
+
+
+          <div class="row side-by-side" style="margin-top: 0px;">
+            <canvas id="canvas11" width="111" height="111" style="width: 111px; height: 111px;"></canvas>
+            <div class="column" style="margin-top: 0px;">
+              <canvas id="kernel11_0" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+              <canvas id="kernel11_1" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+              <canvas id="kernel11_2" width="3" height="3"
+                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
             </div>
-          </div>
-          <div class="column" style="margin-top: 0px;">
-            <canvas id="kernel11_0" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-            <canvas id="kernel11_1" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
-            <canvas id="kernel11_2" width="3" height="3"
-              style="width: 74px; height: 74px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <div class="input-field col s12">
+              <select id="kernel11">
+                <option value="0">0 - </option>
+                <option value="1">1 - Yellow patch detector</option>
+                <option value="2">2 - Green patch detector</option>
+                <option value="3">3 - (Haar like feature)</option>
+                <option value="4">4 - Horizontal edge detector (black over white)</option>
+                <option value="5">5 - Negative</option>
+                <option value="6">6 - </option>
+                <option value="7">7 - Diagonal edge detector</option>
+                <option value="8">8 - Horizontal edge detector</option>
+                <option value="9">9 - Vertical edge detector</option>
+                <option value="10">10 - Horizontal edge detector</option>
+                <option value="11" selected>11 - Red patch detector</option>
+                <option value="12">12 - Blue-Green patch detector</option>
+                <option value="13">13 - Vertical edge detector</option>
+                <option value="14">14 - </option>
+                <option value="15">15 - </option>
+              </select>
+              <label>Kernel Select</label>
+            </div>
           </div>
         </div>
       </div>
-      <div class="column center-content" style="margin-top: 0px;">
-        <h4 style="text-align: center;">Convolutional Layer : 4</h4>
-        <div class="row side-by-side" style="margin-top: 0px;">
-          <div class="column center-content">
-            <canvas id="canvas21" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel21">kernel: 26</p>
-          </div>
-          <div class="column center-content">
-            <canvas id="canvas25" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel25">kernel: 36</p>
-          </div>
-          <div class="column center-content">
-            <canvas id="canvas73" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel73">kernel: 46</p>
-          </div>
-          <div class="column center-content">
-            <canvas id="canvas122" width="14" height="14" style="width: 168px; height: 168px;"></canvas>
-            <p style="text-align: center;" id="kernel122">kernel: 112</p>
-          </div>
+    <!-- </div> -->
+
+    <div class="column center-content" style="margin-top: 0px;">
+      <h5 style="text-align: center;">Convolutional Layer : 4</h5>
+      <div class="row side-by-side" style="margin-top: 0px;">
+        <div class="column center-content">
+          <canvas id="canvas21" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
+          <p style="text-align: center; margin-top: 5px;" id="kernel21">kernel: 26</p>
+        <!-- </div>
+        <div class="column center-content"> -->
+          <canvas id="canvas25" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
+          <p style="text-align: center; margin-top: 5px" id="kernel25">kernel: 36</p>
+        <!-- </div>
+        <div class="column center-content"> -->
+          <canvas id="canvas73" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
+          <p style="text-align: center; margin-top: 5px" id="kernel73">kernel: 46</p>
+        <!-- </div>
+        <div class="column center-content"> -->
+          <canvas id="canvas122" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
+          <p style="text-align: center; margin-top: 5px" id="kernel122">kernel: 112</p>
         </div>
       </div>
     </div>
   </div>
+</div>  
 </body>
 
 <script>
+  $(document).ready(function () {
+    $('select').material_select();
+  });
 
   const width = 3, height = 3;
   const canvas2_0 = document.getElementById('kernel2_0'), ctx2_0 = canvas2_0.getContext('2d'), idata2_0 = ctx2_0.createImageData(width, height);
@@ -175,9 +192,9 @@
 
   async function onPlay() {
 
-    kernels1 = parseInt(document.getElementById("kernel2").value)
-    kernels2 = parseInt(document.getElementById("kernel8").value)
-    kernels3 = parseInt(document.getElementById("kernel11").value)
+    kernels1 = $('select#kernel2').val()
+    kernels2 = $('select#kernel8').val()
+    kernels3 = $('select#kernel11').val()
     list_kernels = [kernels1, kernels2, kernels3]
 
     const videoEl = $('#inputVideo').get(0)
