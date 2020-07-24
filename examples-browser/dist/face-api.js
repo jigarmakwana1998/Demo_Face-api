@@ -4804,31 +4804,20 @@
                           for (var i = 0; i < 3; i++) {
                               var saveconv = _this.param0.slice(list[i], list[i] + 1)[0];
                               var maxRow = saveconv[0].map(function (row) {
-                                  return Math.max.apply(Math, row);
+                                  return Math.max.apply(Math, row.map(Math.abs));
                               });
                               maxRow = maxRow.concat(saveconv[1].map(function (row) {
-                                  return Math.max.apply(Math, row);
+                                  return Math.max.apply(Math, row.map(Math.abs));
                               }));
                               maxRow = maxRow.concat(saveconv[2].map(function (row) {
-                                  return Math.max.apply(Math, row);
+                                  return Math.max.apply(Math, row.map(Math.abs));
                               }));
                               var max = Math.max.apply(null, maxRow);
-                              var minRow = saveconv[0].map(function (row) {
-                                  return Math.min.apply(Math, row);
-                              });
-                              minRow = minRow.concat(saveconv[1].map(function (row) {
-                                  return Math.min.apply(Math, row);
-                              }));
-                              minRow = minRow.concat(saveconv[2].map(function (row) {
-                                  return Math.min.apply(Math, row);
-                              }));
-                              var min = Math.min.apply(null, minRow);
                               for (var j = 0; j < 3; j++) {
                                   var saveconv = _this.param0.slice(list[i], list[i] + 1)[0][j];
-                                  var min = Math.min.apply(null, minRow);
                                   saveconv = saveconv.map(function (x) {
                                       return x.map(function (y) {
-                                          return (((y - min) * 2) / (max - min) - 1) * 255;
+                                          return (y / max) * 255;
                                       });
                                   });
                                   var one_minus_saveconv = saveconv.map(function (x) {
@@ -4891,12 +4880,12 @@
               });
           });
       };
-      TinyYolov2Base.prototype.getGrayScale_conv4 = function () {
+      TinyYolov2Base.prototype.getGrayScale_conv4 = function (list) {
           return __awaiter(this, void 0, void 0, function () {
               var _this = this;
               return __generator(this, function (_a) {
                   return [2 /*return*/, Ze(function () {
-                          var list = [26, 36, 46, 112];
+                        //   var list = [26, 36, 46, 112];
                           var grayScale = [];
                           for (var i = 0; i < 4; i++) {
                               var saveconv = _this.save_conv4.slice(list[i], list[i] + 1)[0];

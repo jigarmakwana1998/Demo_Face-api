@@ -9,19 +9,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body style="background-color:#FFFFE0;">
+<body class="center-content" style="background-color:#FFFFE0;">
   <div class="center-content page-container">
 
-    <div class="progress" id="loader">
+    <div class="progress" id="loader" style="margin-top: -10px;">
       <div class="indeterminate"></div>
     </div>
+    <h2 style="margin-top: 5px;">TinyYoloV2 Face Detection</h2>
     <div class="row side-by-side" style="margin-top: 0px;">
       <div class="column center-content" style="margin-top: 0px;">
 
         <div style="position: relative" class="margin">
-          <video width="640" height="480" style="clip-path: polygon(87.5% 0%, 87.5% 100%, 12.5% 100%, 12.50% 0%);"
+          <video width="580" height="435" style="clip-path: polygon(87.5% 0%, 87.5% 100%, 12.5% 100%, 12.50% 0%);"
             onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
           <canvas id="overlay" style="clip-path: polygon(87.5% 0%, 87.5% 100%, 12.5% 100%, 12.50% 0%);" />
         </div>
@@ -30,34 +32,46 @@
           <div class="row side-by-side" style="margin-top: 0px;">
             <div class="column center-content">
               <canvas id="canvas21" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
-              <p style="text-align: center; margin-top: 5px;" id="kernel21">kernel: 26</p>
+              <div class="row">
+                <label for="kernel26">Kernel:</label>
+                <input value="26" id="kernel26" type="number" max="127" min="0" class="bold">
+              </div>
             </div>
             <div class="column center-content">
               <canvas id="canvas25" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
-              <p style="text-align: center; margin-top: 5px" id="kernel25">kernel: 36</p>
+              <div class="row">
+                <label for="kernel36">Kernel:</label>
+                <input value="36" id="kernel36" type="number" max="127" min="0" class="bold">
+              </div>
             </div>
             <div class="column center-content">
               <canvas id="canvas73" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
-              <p style="text-align: center; margin-top: 5px" id="kernel73">kernel: 46</p>
+              <div class="row">
+                <label for="kernel46">Kernel:</label>
+                <input value="46" id="kernel46" type="number" max="127" min="0" class="bold">
+              </div>
             </div>
             <div class="column center-content">
               <canvas id="canvas122" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
-              <p style="text-align: center; margin-top: 5px" id="kernel122">kernel: 112</p>
+              <div class="row">
+                <label for="kernel112">Kernel:</label>
+                <input value="112" id="kernel112" type="number" max="127" min="0" class="bold">
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="column center-content" style="margin-top: 0px;">
-        <h5 style="text-align: center;">Convolutional Layer : 1</h5>
+        <h5 style="text-align: center; margin-top: -15px;">Convolutional Layer : 1</h5>
         <div class="row side-by-side" style="margin-top: 0px;">
-          <canvas id="canvas2" width="111" height="111" style="width: 175px; height: 175px;"></canvas>
+          <canvas id="canvas2" width="111" height="111" style="width: 200px; height: 200px;"></canvas>
           <div class="column" style="margin-top: 0px;">
             <canvas id="kernel2_0" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
             <canvas id="kernel2_1" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
             <canvas id="kernel2_2" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
           </div>
           <div class="input-field col s12" style="width: 400px;">
             <select id="kernel2">
@@ -83,14 +97,14 @@
         </div>
 
         <div class="row side-by-side" style="margin-top: 0px;">
-          <canvas id="canvas8" width="111" height="111" style="width: 175px; height: 175px;"></canvas>
+          <canvas id="canvas8" width="111" height="111" style="width: 200px; height: 200px;"></canvas>
           <div class="column" style="margin-top: 0px;">
             <canvas id="kernel8_0" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
             <canvas id="kernel8_1" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
             <canvas id="kernel8_2" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
           </div>
           <div class="input-field col s12" style="width: 400px;">
             <select id="kernel8">
@@ -115,16 +129,15 @@
           </div>
         </div>
 
-
         <div class="row side-by-side" style="margin-top: 0px;">
-          <canvas id="canvas11" width="111" height="111" style="width: 175px; height: 175px;"></canvas>
+          <canvas id="canvas11" width="111" height="111" style="width: 200px; height: 200px;"></canvas>
           <div class="column" style="margin-top: 0px;">
             <canvas id="kernel11_0" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
             <canvas id="kernel11_1" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
             <canvas id="kernel11_2" width="3" height="3"
-              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+              style="width: 55px; height: 55px; image-rendering: pixelated; margin: 10px;"></canvas>
           </div>
           <div class="input-field col s12" style="width: 400px;">
             <select id="kernel11">
@@ -150,6 +163,10 @@
         </div>
       </div>
     </div>
+    <p style="text-align: center; margin-top: -50px; margin-bottom: 0px;">Developed by Jigar Makwana and David S. Touretzky. <br>
+      Based on the face-api.js demo by Vincent Muhler at <a
+        href="https://github.com/justadudewhohacks/face-api.js/">GitHub <i class="fa fa-github"
+          style="color: #000; font-size: large;"></i></a></p>
   </div>
 </body>
 
@@ -195,6 +212,19 @@
     kernels3 = $('select#kernel11').val()
     list_kernels = [kernels1, kernels2, kernels3]
 
+    kernels26 = $('#kernel26').val()
+    kernels36 = $('#kernel36').val()
+    kernels46 = $('#kernel46').val()
+    kernels112 = $('#kernel112').val()
+
+    kernels_a26 = Math.max(Math.min(kernels26, 127), 0)
+    kernels_a36 = Math.max(Math.min(kernels36, 127), 0)
+    kernels_a46 = Math.max(Math.min(kernels46, 127), 0)
+    kernels_a112 = Math.max(Math.min(kernels112, 127), 0)
+    list_kernels_4 = [kernels_a26, kernels_a36, kernels_a46, kernels_a112]
+
+    // console.log(list_kernels_4)
+
     const videoEl = $('#inputVideo').get(0)
     if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
       return setTimeout(() => onPlay())
@@ -202,7 +232,7 @@
     const result = await faceapi.detectAllFaces(videoEl, new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold }))
     const grayScale = await faceapi.nets.tinyFaceDetector.getGrayScale(list_kernels);
     const getKernel_0 = await faceapi.nets.tinyFaceDetector.getKernel_0(list_kernels);
-    const grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv4();
+    const grayScale2 = await faceapi.nets.tinyFaceDetector.getGrayScale_conv4(list_kernels_4);
 
     idata2.data.set(grayScale[0]);
     ctx2.putImageData(idata2, 0, 0);
@@ -248,7 +278,9 @@
 
     if (result) {
       const canvas = $('#overlay').get(0)
-      const dims = faceapi.matchDimensions(canvas, videoEl, true)
+      canvas.width = 580, canvas.height = 435;
+      const displaySize = { width: videoEl.width, height: videoEl.height }
+      const dims = faceapi.matchDimensions(canvas, displaySize)
       faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims))
     }
 
