@@ -18,140 +18,139 @@
       <div class="indeterminate"></div>
     </div>
     <div class="row side-by-side" style="margin-top: 0px;">
-      <div style="position: relative" class="margin">
-        <video width="640" height="480" onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted
-          playsinline></video>
-        <canvas id="overlay" />
-      </div>
-      <div class="column center-content">
+      <div class="column center-content" style="margin-top: 0px;">
+
+        <div style="position: relative" class="margin">
+          <video width="640" height="480" style="clip-path: polygon(87.5% 0%, 87.5% 100%, 12.5% 100%, 12.50% 0%);"
+            onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
+          <canvas id="overlay" style="clip-path: polygon(87.5% 0%, 87.5% 100%, 12.5% 100%, 12.50% 0%);" />
+        </div>
         <div class="column center-content" style="margin-top: 0px;">
-          <h5 style="text-align: center;">Convolutional Layer : 1</h5>
+          <h5 style="text-align: center;">Convolutional Layer : 4</h5>
           <div class="row side-by-side" style="margin-top: 0px;">
-            <canvas id="canvas2" width="111" height="111" style="width: 111px; height: 111px;"></canvas>
-            <div class="column" style="margin-top: 0px;">
-              <canvas id="kernel2_0" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
-              <canvas id="kernel2_1" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
-              <canvas id="kernel2_2" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <div class="column center-content">
+              <canvas id="canvas21" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
+              <p style="text-align: center; margin-top: 5px;" id="kernel21">kernel: 26</p>
             </div>
-            <div class="input-field col s12">
-              <select id="kernel2">
-                <option value="0">0 - </option>
-                <option value="1">1 - Yellow patch detector</option>
-                <option value="2" selected>2 - Green patch detector</option>
-                <option value="3">3 - (Haar like feature)</option>
-                <option value="4">4 - Horizontal edge detector (black over white)</option>
-                <option value="5">5 - Negative</option>
-                <option value="6">6 - </option>
-                <option value="7">7 - Diagonal edge detector</option>
-                <option value="8">8 - Horizontal edge detector</option>
-                <option value="9">9 - Vertical edge detector</option>
-                <option value="10">10 - Horizontal edge detector</option>
-                <option value="11">11 - Red patch detector</option>
-                <option value="12">12 - Blue-Green patch detector</option>
-                <option value="13">13 - Vertical edge detector</option>
-                <option value="14">14 - </option>
-                <option value="15">15 - </option>
-              </select>
-              <label>Kernel Select</label>
+            <div class="column center-content">
+              <canvas id="canvas25" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
+              <p style="text-align: center; margin-top: 5px" id="kernel25">kernel: 36</p>
             </div>
-          </div>
-
-          <div class="row side-by-side" style="margin-top: 0px;">
-            <canvas id="canvas8" width="111" height="111" style="width: 111px; height: 111px;"></canvas>
-            <div class="column" style="margin-top: 0px;">
-              <canvas id="kernel8_0" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
-              <canvas id="kernel8_1" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
-              <canvas id="kernel8_2" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <div class="column center-content">
+              <canvas id="canvas73" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
+              <p style="text-align: center; margin-top: 5px" id="kernel73">kernel: 46</p>
             </div>
-            <div class="input-field col s12">
-              <select id="kernel8">
-                <option value="0">0 - </option>
-                <option value="1">1 - Yellow patch detector</option>
-                <option value="2">2 - Green patch detector</option>
-                <option value="3">3 - (Haar like feature)</option>
-                <option value="4">4 - Horizontal edge detector (black over white)</option>
-                <option value="5">5 - Negative</option>
-                <option value="6">6 - </option>
-                <option value="7">7 - Diagonal edge detector</option>
-                <option value="8" selected>8 - Horizontal edge detector</option>
-                <option value="9">9 - Vertical edge detector</option>
-                <option value="10">10 - Horizontal edge detector</option>
-                <option value="11">11 - Red patch detector</option>
-                <option value="12">12 - Blue-Green patch detector</option>
-                <option value="13">13 - Vertical edge detector</option>
-                <option value="14">14 - </option>
-                <option value="15">15 - </option>
-              </select>
-              <label>Kernel Select</label>
-            </div>
-          </div>
-
-
-          <div class="row side-by-side" style="margin-top: 0px;">
-            <canvas id="canvas11" width="111" height="111" style="width: 111px; height: 111px;"></canvas>
-            <div class="column" style="margin-top: 0px;">
-              <canvas id="kernel11_0" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
-              <canvas id="kernel11_1" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
-              <canvas id="kernel11_2" width="3" height="3"
-                style="width: 30px; height: 30px; image-rendering: pixelated; margin: 10px;"></canvas>
-            </div>
-            <div class="input-field col s12">
-              <select id="kernel11">
-                <option value="0">0 - </option>
-                <option value="1">1 - Yellow patch detector</option>
-                <option value="2">2 - Green patch detector</option>
-                <option value="3">3 - (Haar like feature)</option>
-                <option value="4">4 - Horizontal edge detector (black over white)</option>
-                <option value="5">5 - Negative</option>
-                <option value="6">6 - </option>
-                <option value="7">7 - Diagonal edge detector</option>
-                <option value="8">8 - Horizontal edge detector</option>
-                <option value="9">9 - Vertical edge detector</option>
-                <option value="10">10 - Horizontal edge detector</option>
-                <option value="11" selected>11 - Red patch detector</option>
-                <option value="12">12 - Blue-Green patch detector</option>
-                <option value="13">13 - Vertical edge detector</option>
-                <option value="14">14 - </option>
-                <option value="15">15 - </option>
-              </select>
-              <label>Kernel Select</label>
+            <div class="column center-content">
+              <canvas id="canvas122" width="14" height="14" style="width: 150px; height: 150px;"></canvas>
+              <p style="text-align: center; margin-top: 5px" id="kernel122">kernel: 112</p>
             </div>
           </div>
         </div>
       </div>
-    <!-- </div> -->
+      <div class="column center-content" style="margin-top: 0px;">
+        <h5 style="text-align: center;">Convolutional Layer : 1</h5>
+        <div class="row side-by-side" style="margin-top: 0px;">
+          <canvas id="canvas2" width="111" height="111" style="width: 175px; height: 175px;"></canvas>
+          <div class="column" style="margin-top: 0px;">
+            <canvas id="kernel2_0" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel2_1" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel2_2" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+          </div>
+          <div class="input-field col s12" style="width: 400px;">
+            <select id="kernel2">
+              <option value="0">0 - </option>
+              <option value="1">1 - Yellow patch detector</option>
+              <option value="2" selected>2 - Green patch detector</option>
+              <option value="3">3 - (Haar like feature)</option>
+              <option value="4">4 - Horizontal edge detector (black over white)</option>
+              <option value="5">5 - Negative</option>
+              <option value="6">6 - </option>
+              <option value="7">7 - Diagonal edge detector</option>
+              <option value="8">8 - Horizontal edge detector</option>
+              <option value="9">9 - Vertical edge detector</option>
+              <option value="10">10 - Horizontal edge detector</option>
+              <option value="11">11 - Red patch detector</option>
+              <option value="12">12 - Blue-Green patch detector</option>
+              <option value="13">13 - Vertical edge detector</option>
+              <option value="14">14 - </option>
+              <option value="15">15 - </option>
+            </select>
+            <label>Kernel Select</label>
+          </div>
+        </div>
 
-    <div class="column center-content" style="margin-top: 0px;">
-      <h5 style="text-align: center;">Convolutional Layer : 4</h5>
-      <div class="row side-by-side" style="margin-top: 0px;">
-        <div class="column center-content">
-          <canvas id="canvas21" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
-          <p style="text-align: center; margin-top: 5px;" id="kernel21">kernel: 26</p>
-        <!-- </div>
-        <div class="column center-content"> -->
-          <canvas id="canvas25" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
-          <p style="text-align: center; margin-top: 5px" id="kernel25">kernel: 36</p>
-        <!-- </div>
-        <div class="column center-content"> -->
-          <canvas id="canvas73" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
-          <p style="text-align: center; margin-top: 5px" id="kernel73">kernel: 46</p>
-        <!-- </div>
-        <div class="column center-content"> -->
-          <canvas id="canvas122" width="14" height="14" style="width: 80px; height: 80px;"></canvas>
-          <p style="text-align: center; margin-top: 5px" id="kernel122">kernel: 112</p>
+        <div class="row side-by-side" style="margin-top: 0px;">
+          <canvas id="canvas8" width="111" height="111" style="width: 175px; height: 175px;"></canvas>
+          <div class="column" style="margin-top: 0px;">
+            <canvas id="kernel8_0" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel8_1" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel8_2" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+          </div>
+          <div class="input-field col s12" style="width: 400px;">
+            <select id="kernel8">
+              <option value="0">0 - </option>
+              <option value="1">1 - Yellow patch detector</option>
+              <option value="2">2 - Green patch detector</option>
+              <option value="3">3 - (Haar like feature)</option>
+              <option value="4">4 - Horizontal edge detector (black over white)</option>
+              <option value="5">5 - Negative</option>
+              <option value="6">6 - </option>
+              <option value="7">7 - Diagonal edge detector</option>
+              <option value="8" selected>8 - Horizontal edge detector</option>
+              <option value="9">9 - Vertical edge detector</option>
+              <option value="10">10 - Horizontal edge detector</option>
+              <option value="11">11 - Red patch detector</option>
+              <option value="12">12 - Blue-Green patch detector</option>
+              <option value="13">13 - Vertical edge detector</option>
+              <option value="14">14 - </option>
+              <option value="15">15 - </option>
+            </select>
+            <label>Kernel Select</label>
+          </div>
+        </div>
+
+
+        <div class="row side-by-side" style="margin-top: 0px;">
+          <canvas id="canvas11" width="111" height="111" style="width: 175px; height: 175px;"></canvas>
+          <div class="column" style="margin-top: 0px;">
+            <canvas id="kernel11_0" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel11_1" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+            <canvas id="kernel11_2" width="3" height="3"
+              style="width: 45px; height: 45px; image-rendering: pixelated; margin: 10px;"></canvas>
+          </div>
+          <div class="input-field col s12" style="width: 400px;">
+            <select id="kernel11">
+              <option value="0">0 - </option>
+              <option value="1">1 - Yellow patch detector</option>
+              <option value="2">2 - Green patch detector</option>
+              <option value="3">3 - (Haar like feature)</option>
+              <option value="4">4 - Horizontal edge detector (black over white)</option>
+              <option value="5">5 - Negative</option>
+              <option value="6">6 - </option>
+              <option value="7">7 - Diagonal edge detector</option>
+              <option value="8">8 - Horizontal edge detector</option>
+              <option value="9">9 - Vertical edge detector</option>
+              <option value="10">10 - Horizontal edge detector</option>
+              <option value="11" selected>11 - Red patch detector</option>
+              <option value="12">12 - Blue-Green patch detector</option>
+              <option value="13">13 - Vertical edge detector</option>
+              <option value="14">14 - </option>
+              <option value="15">15 - </option>
+            </select>
+            <label>Kernel Select</label>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>  
 </body>
 
 <script>
@@ -169,7 +168,6 @@
   const canvas11_0 = document.getElementById('kernel11_0'), ctx11_0 = canvas11_0.getContext('2d'), idata11_0 = ctx11_0.createImageData(width, height);
   const canvas11_1 = document.getElementById('kernel11_1'), ctx11_1 = canvas11_1.getContext('2d'), idata11_1 = ctx11_1.createImageData(width, height);
   const canvas11_2 = document.getElementById('kernel11_2'), ctx11_2 = canvas11_2.getContext('2d'), idata11_2 = ctx11_2.createImageData(width, height);
-
 
   const width1 = 111, height1 = 111;
   const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d'), idata2 = ctx2.createImageData(width1, height1);
