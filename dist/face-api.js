@@ -4877,7 +4877,8 @@
                               var min = Math.min.apply(null, minRow);
                               saveconv = saveconv.map(function (x) {
                                   return x.map(function (y) {
-                                      return ((y - min) * 255) / (max - min);
+                                      return y * 255;
+                                    //   return ((y - min) * 255) / (max - min);
                                   });
                               });
                               var alpha = Hn([14, 14], 255);
