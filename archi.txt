@@ -1,0 +1,45 @@
+conv0:
+    filters: t
+        shape: (4) [3, 3, 3, 16]
+        strides: (3) [144, 48, 16]
+conv1: SeparableConvParams
+    depthwise_filter: t
+        shape: (4) [3, 3, 16, 1]
+        strides: (3) [48, 16, 1]
+    pointwise_filter: t
+        shape: (4) [1, 1, 16, 32]
+        strides: (3) [512, 512, 32]
+conv2: SeparableConvParams
+    depthwise_filter: t
+        shape: (4) [3, 3, 32, 1]
+        strides: (3) [96, 32, 1]
+    pointwise_filter: t
+        shape: (4) [1, 1, 32, 64]
+        strides: (3) [2048, 2048, 64]
+conv3: SeparableConvParams
+    depthwise_filter: t
+        shape: (4) [3, 3, 64, 1]
+        strides: (3) [192, 64, 1]
+    pointwise_filter: t
+        shape: (4) [1, 1, 64, 128]
+        strides: (3) [8192, 8192, 128]
+conv4: SeparableConvParams
+    depthwise_filter: t
+        shape: (4) [3, 3, 128, 1]
+        strides: (3) [384, 128, 1]
+    pointwise_filter: t
+        shape: (4) [1, 1, 128, 256]
+        strides: (3) [32768, 32768, 256]
+conv5: SeparableConvParams
+    depthwise_filter: t
+        shape: (4) [3, 3, 256, 1]
+        strides: (3) [768, 256, 1]
+    pointwise_filter: t
+        shape: (4) [1, 1, 256, 512]
+        strides: (3) [131072, 131072, 512]
+conv6: undefined
+conv7: undefined
+conv8:
+    filters: t
+        shape: (4) [1, 1, 512, 25]
+
